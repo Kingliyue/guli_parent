@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.atliyue.edu.mapper.TeacherMapper">
+    <select id="selectList">
+        select id, name,intro,career,level,avatar,sort,is_deleted,gmt_create,gmt_modified from edu_teacher
+        <include refid="where"></include>
+    </select>
+    <sql id="where">
+        <where>
+            <if test="name!=null">
+                name =#{name},
+            </if>
+            <if test="id !=null">
+                and id=#{id}
+            </if>
+        </where>
+
+    </sql>
+</mapper>
+
+
+
