@@ -28,7 +28,7 @@ import java.util.List;
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
-    @GetMapping(value = "/list")
+    @GetMapping(value = "list")
     @ApiOperation("教师列表")
     public List<Teacher> getLiistTearche( Wrapper<Teacher> queryWrapper){
         List<Teacher> list = teacherService.list(queryWrapper);

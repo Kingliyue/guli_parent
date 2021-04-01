@@ -15,6 +15,5 @@ import java.util.List;
  * @since 2021-04-01
  */
 public interface TeacherService extends IService<Teacher> {
-    @Override
-    List<Teacher> list(Wrapper<Teacher> wrapper);
+
 }

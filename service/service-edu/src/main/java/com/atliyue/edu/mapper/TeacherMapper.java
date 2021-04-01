@@ -20,9 +20,5 @@ import java.util.Map;
  */
 @Mapper
 public interface TeacherMapper extends BaseMapper<Teacher> {
-    @Override
-    IPage<Map<String, Object>> selectMapsPage(IPage<Teacher> iPage, Wrapper<Teacher> wrapper);
 
-    @Override
-    List<Teacher> selectList(Wrapper<Teacher> wrapper);
 }

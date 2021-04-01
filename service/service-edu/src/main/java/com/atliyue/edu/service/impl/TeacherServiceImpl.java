@@ -21,11 +21,5 @@ import java.util.List;
  */
 @Service
 public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> implements TeacherService {
-    @Resource
-    private  TeacherMapper teacherMapper ;
-    @Override
-    public List<Teacher> list(Wrapper<Teacher> queryWrapper) {
-        List<Teacher> teachers = teacherMapper.selectList(queryWrapper);
-        return teachers;
-    }
+
 }
