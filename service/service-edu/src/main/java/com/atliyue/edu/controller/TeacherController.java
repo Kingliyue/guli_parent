@@ -30,8 +30,8 @@ public class TeacherController {
     private TeacherService teacherService;
     @GetMapping(value = "list")
     @ApiOperation("教师列表")
-    public List<Teacher> getLiistTearche( Wrapper<Teacher> queryWrapper){
-        List<Teacher> list = teacherService.list(queryWrapper);
+    public List<Teacher> getListTeacher( Wrapper<Teacher> queryWrapper){
+        List<Teacher> list = teacherService.list(null);
         return list;
     }
 
