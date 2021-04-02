@@ -18,7 +18,6 @@ import java.util.Map;
  * @author liYue
  * @since 2021-04-01
  */
-@Mapper
 public interface TeacherMapper extends BaseMapper<Teacher> {
 
 }
