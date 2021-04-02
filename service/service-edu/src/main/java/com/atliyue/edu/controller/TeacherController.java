@@ -26,7 +26,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/edu/teacher")
-@Api(tags = "教师control",value = "教师control")
+@ApiModel
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
@@ -35,9 +35,6 @@ public class TeacherController {
     public List<Teacher> getListTeacher(){
         List<Teacher> list = teacherService.list(null);
         return list;
-    }
-    public String deleteTeacher(){
-        return "";
     }
 
 }
