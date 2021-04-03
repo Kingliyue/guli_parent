@@ -8,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,6 +36,11 @@ public class TeacherController {
     public List<Teacher> getListTeacher(){
         List<Teacher> list = teacherService.list(null);
         return list;
+    }
+    @DeleteMapping("/delete")
+    public String deleteTeacher(){
+        teacherService.removeById("1192327476087115778");
+        return "ok";
     }
 
 }
