@@ -3,18 +3,11 @@ package com.atliyue.edu.controller;
 
 import com.atliyue.edu.entity.Teacher;
 import com.atliyue.edu.service.TeacherService;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -27,7 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/edu/teacher")
-@ApiModel
+@Api
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
@@ -37,10 +30,11 @@ public class TeacherController {
         List<Teacher> list = teacherService.list(null);
         return list;
     }
-    @DeleteMapping("/delete")
-    public String deleteTeacher(){
-        teacherService.removeById("1192327476087115778");
-        return "ok";
+    @DeleteMapping("/delete/{id}")
+    @ApiOperation("删除教师")
+    public boolean deleteTeacher(@PathVariable("id") String userId){
+        boolean b = teacherService.removeById(userId);
+        return b;
     }
 
 }
