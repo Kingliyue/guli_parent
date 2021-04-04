@@ -3,6 +3,7 @@ package com.atliyue.edu.controller;
 
 import com.atliyue.edu.entity.Teacher;
 import com.atliyue.edu.service.TeacherService;
+import com.liyue.result.Reselt;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +27,21 @@ public class TeacherController {
     private TeacherService teacherService;
     @GetMapping("/list")
     @ApiOperation("教师列表")
-    public List<Teacher> getListTeacher(){
+    public Reselt getListTeacher(){
         List<Teacher> list = teacherService.list(null);
-        return list;
+        return  Reselt.ok().data("item",list);
+
     }
     @DeleteMapping("/delete/{id}")
     @ApiOperation("删除教师")
-    public boolean deleteTeacher(@PathVariable("id") String userId){
+    public Reselt deleteTeacher(@PathVariable("id") String userId) {
         boolean b = teacherService.removeById(userId);
-        return b;
+        if (b) {
+            int a =2/0;
+            return Reselt.ok();
+        }else {
+            return Reselt.error();
+        }
     }
 
 }
