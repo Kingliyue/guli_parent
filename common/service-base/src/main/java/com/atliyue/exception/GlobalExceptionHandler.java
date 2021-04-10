@@ -16,5 +16,14 @@ public class GlobalExceptionHandler {
         e.printStackTrace();
         return  Reselt.error().message("全局异常");
     }
+    //自定义异常
+    @ExceptionHandler(MyException.class)
+    @ResponseBody
+    public Reselt myException(MyException e){
+        return  Reselt.error()
+                .code(e.getCode())
+                .message(e.getMessage());
+    }
+
 
 }

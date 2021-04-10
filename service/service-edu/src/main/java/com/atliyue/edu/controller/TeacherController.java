@@ -3,10 +3,14 @@ package com.atliyue.edu.controller;
 
 import com.atliyue.edu.entity.Teacher;
 import com.atliyue.edu.service.TeacherService;
+import com.atliyue.exception.MyException;
 import com.liyue.result.Reselt;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,15 +38,27 @@ public class TeacherController {
     }
     @DeleteMapping("/delete/{id}")
     @ApiOperation("删除教师")
+    @Transactional
     public Reselt deleteTeacher(@PathVariable("id") String userId) {
-        boolean b = teacherService.removeById(userId);
-        if (b) {
-            int a =2/0;
-            return Reselt.ok();
-        }else {
-            return Reselt.error();
+        boolean b =true;
+        try {
+            int cc =2/0;
+            b = teacherService.removeById(userId);
+            Reselt.ok();
+        }catch (Exception e){
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+           throw new MyException(12234,e.getMessage());
         }
+        return null;
+
     }
+    @PostMapping
+    @ApiOperation("添加老师")
+     public Reselt addTeacher(){
+
+        return Reselt.ok();
+    }
+
 
 }
 

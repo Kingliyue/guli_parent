@@ -41,25 +41,25 @@ public class  Reselt {
     }
     //链式编程
     public  Reselt code(Integer code){
-        this.code = code ;
+        this.setCode(code) ;
         return this;
     }
     public Reselt success(boolean success){
-        this.success = success ;
+        this.setSuccess(success);
         return this;
     }
     public Reselt message(String message){
-        this.message = message ;
+        this.setMessage(message);
         return this;
     }
     public  Reselt data(HashMap<String,Object> data){
-        this.data = data ;
+        this.setData(data);
         return this;
     }
     public  Reselt data(String key, Object value){
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put(key,value);
-        this.data = hashMap ;
+        this.setData(hashMap);
         return this;
     }
 
