@@ -12,6 +12,7 @@ import com.liyue.result.Result;
 import com.liyue.result.ResultCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -30,14 +31,25 @@ import java.util.List;
 @RestController
 @RequestMapping("/edu/teacher")
 @Api
+@Slf4j
+@CrossOrigin //跨域
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
+    @PostMapping("user/login")
+    @ApiOperation("登录的接口")
+    public Result login(@RequestParam("username") String username,@RequestParam("password") String password){
+
+        return Result.ok().data("admin","admin");
+
+    }
+
 
     @GetMapping("/list")
     @ApiOperation("教师列表")
     public Result getListTeacher() {
         List<Teacher> list = teacherService.list(null);
+        log.info(String.format("查询返回的结果%s",list));
         return Result.ok().data("item", list);
 
     }
@@ -51,6 +63,7 @@ public class TeacherController {
             b = teacherService.removeById(userId);
             Result.ok();
         } catch (Exception e) {
+            log.info("查询返回的结果 %s",e.getMessage());
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
             throw new MyException(ResultCode.sucese, e.getMessage());
         }
@@ -58,9 +71,10 @@ public class TeacherController {
 
     }
 
-    @PostMapping
+    @PostMapping("edu/teacher/")
     @ApiOperation("添加老师")
-    public Result addTeacher() {
+
+    public Result addTeacher(QueryTeacher teacher) {
 
         return Result.ok();
     }
