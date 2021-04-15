@@ -30,10 +30,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/edu/teacher")
 @Api
+@CrossOrigin
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
-
+   
     @GetMapping("/list")
     @ApiOperation("教师列表")
     public Result getListTeacher() {
@@ -58,15 +59,38 @@ public class TeacherController {
 
     }
 
-    @PostMapping
+    @PostMapping("/addTeacher")
     @ApiOperation("添加老师")
-    public Result addTeacher() {
+    @Transactional
+    public Result addTeacher(Teacher queryTeacher) {
+        try {
+            boolean save = teacherService.save(queryTeacher);
+            if(save){
+                return Result.ok();
+            }else {
+                return Result.error();
+            }
+        }catch (Exception e){
+            TransactionAspectSupport.currentTransactionStatus().isRollbackOnly();
+            throw  new MyException(ResultCode.error,e.getMessage());
+        }
 
-        return Result.ok();
+
+
     }
+    //修改教师列表
+    @PutMapping("updateTeacher")
+    @ApiOperation("修改教师信息")
+    public Result updateTeacher(){
+        //todo
+   //     teacherService.update()
 
+
+        return null;
+
+    }
     //有条件的查询教师列表分页
-    @PostMapping("/edu/teacher/query")
+    @PostMapping("/query")
     @ApiOperation("有条件的查询老师列表")
     public Result queryTeacher(@RequestParam("current") long current, @RequestParam("size") long size, QueryTeacher queryTeacher) {
         //current当前第几页  、size每页大小
