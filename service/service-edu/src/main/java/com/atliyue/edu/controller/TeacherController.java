@@ -12,7 +12,6 @@ import com.liyue.result.Result;
 import com.liyue.result.ResultCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -31,66 +30,78 @@ import java.util.List;
 @RestController
 @RequestMapping("/edu/teacher")
 @Api
-@Slf4j
-@CrossOrigin //跨域
+@CrossOrigin
 public class TeacherController {
     @Autowired
     private TeacherService teacherService;
-    @PostMapping("user/login")
-    @ApiOperation("登录的接口")
-    public Result login(@RequestParam("username") String username,@RequestParam("password") String password){
-
-        return Result.ok().data("admin","admin");
-
-    }
-
-
+   
     @GetMapping("/list")
     @ApiOperation("教师列表")
     public Result getListTeacher() {
         List<Teacher> list = teacherService.list(null);
-        log.info(String.format("查询返回的结果%s",list));
         return Result.ok().data("item", list);
-
     }
-
     @DeleteMapping("/delete/{id}")
     @ApiOperation("删除教师")
     @Transactional
     public Result deleteTeacher(@PathVariable("id") String userId) {
+        System.out.println(userId +"----------");
         boolean b = true;
         try {
             b = teacherService.removeById(userId);
-            Result.ok();
+            System.out.println(Result.ok());
+            return  Result.ok();
         } catch (Exception e) {
-            log.info("查询返回的结果 %s",e.getMessage());
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            throw new MyException(ResultCode.sucese, e.getMessage());
+            throw new MyException(ResultCode.error,"我错了！！");
         }
+
+
+    }
+    @PostMapping("/addTeacher")
+    @ApiOperation("添加老师")
+    @Transactional
+    public Result addTeacher(Teacher queryTeacher) {
+        try {
+            boolean save = teacherService.save(queryTeacher);
+            if(save){
+                return Result.ok();
+            }else {
+                return Result.error();
+            }
+        }catch (Exception e){
+            TransactionAspectSupport.currentTransactionStatus().isRollbackOnly();
+            throw  new MyException(ResultCode.error,e.getMessage());
+        }
+    }
+    //修改教师列表
+    @PutMapping("updateTeacher")
+    @ApiOperation("修改教师信息")
+    public Result updateTeacher(){
+        //todo
+   //     teacherService.update()
+
+
         return null;
 
     }
-
-    @PostMapping("edu/teacher/")
-    @ApiOperation("添加老师")
-
-    public Result addTeacher(QueryTeacher teacher) {
-
-        return Result.ok();
-    }
-
     //有条件的查询教师列表分页
-    @PostMapping("/edu/teacher/query")
+
+
+
+    @PostMapping("/query/{current}/{size}")
     @ApiOperation("有条件的查询老师列表")
-    public Result queryTeacher(@RequestParam("current") long current, @RequestParam("size") long size, QueryTeacher queryTeacher) {
+    public Result queryTeacher(@PathVariable("current") long current, @PathVariable("size") long size,
+         @RequestParam(required = false) QueryTeacher queryTeacher) {
         //current当前第几页  、size每页大小
+        System.out.println(queryTeacher+"-------------");
         IPage<Teacher> teacherPage = null;
         try {
             Page page = new Page(current, size);
 
             QueryWrapper wrapper = new QueryWrapper(queryTeacher);
-            if (queryTeacher != null && "".equals(queryTeacher.getId())) {
-                wrapper.select("id");
+            if (queryTeacher != null && "".equals(queryTeacher.getIntro())) {
+                wrapper.select("intro");
             }
             if (queryTeacher != null && "".equals(queryTeacher.getName())) {
                 wrapper.select("name");
