@@ -56,8 +56,8 @@ public class  Result {
         this.setData(data);
         return this;
     }
+    private static HashMap<String, Object> hashMap = new HashMap<>();
     public  Result data(String key, Object value){
-        HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put(key,value);
         this.setData(hashMap);
         return this;

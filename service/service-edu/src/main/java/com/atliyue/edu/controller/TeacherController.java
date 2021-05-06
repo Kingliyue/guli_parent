@@ -40,25 +40,24 @@ public class TeacherController {
     public Result getListTeacher() {
         List<Teacher> list = teacherService.list(null);
         return Result.ok().data("item", list);
-
     }
-
     @DeleteMapping("/delete/{id}")
     @ApiOperation("删除教师")
     @Transactional
     public Result deleteTeacher(@PathVariable("id") String userId) {
+        System.out.println(userId +"----------");
         boolean b = true;
         try {
             b = teacherService.removeById(userId);
-            Result.ok();
+            System.out.println(Result.ok());
+            return  Result.ok();
         } catch (Exception e) {
             TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            throw new MyException(ResultCode.sucese, e.getMessage());
+            throw new MyException(ResultCode.error,"我错了！！");
         }
-        return null;
+
 
     }
-
     @PostMapping("/addTeacher")
     @ApiOperation("添加老师")
     @Transactional
@@ -74,9 +73,6 @@ public class TeacherController {
             TransactionAspectSupport.currentTransactionStatus().isRollbackOnly();
             throw  new MyException(ResultCode.error,e.getMessage());
         }
-
-
-
     }
     //修改教师列表
     @PutMapping("updateTeacher")
@@ -90,17 +86,22 @@ public class TeacherController {
 
     }
     //有条件的查询教师列表分页
-    @PostMapping("/query")
+
+
+
+    @PostMapping("/query/{current}/{size}")
     @ApiOperation("有条件的查询老师列表")
-    public Result queryTeacher(@RequestParam("current") long current, @RequestParam("size") long size, QueryTeacher queryTeacher) {
+    public Result queryTeacher(@PathVariable("current") long current, @PathVariable("size") long size,
+         @RequestParam(required = false) QueryTeacher queryTeacher) {
         //current当前第几页  、size每页大小
+        System.out.println(queryTeacher+"-------------");
         IPage<Teacher> teacherPage = null;
         try {
             Page page = new Page(current, size);
 
             QueryWrapper wrapper = new QueryWrapper(queryTeacher);
-            if (queryTeacher != null && "".equals(queryTeacher.getId())) {
-                wrapper.select("id");
+            if (queryTeacher != null && "".equals(queryTeacher.getIntro())) {
+                wrapper.select("intro");
             }
             if (queryTeacher != null && "".equals(queryTeacher.getName())) {
                 wrapper.select("name");

@@ -3,10 +3,12 @@ package com.atliyue.edu.vo;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+
 import java.io.Serializable;
 import java.util.Date;
 
 @Data
+
 public class QueryTeacher implements Serializable {
     @ApiModelProperty(value = "讲师ID")
     private String id;
@@ -39,4 +41,19 @@ public class QueryTeacher implements Serializable {
     @ApiModelProperty(value = "更新时间")
     private Date gmtModified;
 
+    @Override
+    public String toString() {
+        return "QueryTeacher{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", intro='" + intro + '\'' +
+                ", career='" + career + '\'' +
+                ", level=" + level +
+                ", avatar='" + avatar + '\'' +
+                ", sort=" + sort +
+                ", isDeleted=" + isDeleted +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModified=" + gmtModified +
+                '}';
+    }
 }
