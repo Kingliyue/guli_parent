@@ -44,7 +44,7 @@ public class TeacherController {
     @DeleteMapping("/delete/{id}")
     @ApiOperation("删除教师")
     @Transactional
-    public Result deleteTeacher(@PathVariable("id") String userId) {
+    public Result deleteTeacher(@PathVariable("id") Long userId) {
         System.out.println(userId +"----------");
         boolean b = true;
         try {
@@ -62,6 +62,7 @@ public class TeacherController {
     @ApiOperation("添加老师")
     @Transactional
     public Result addTeacher(Teacher queryTeacher) {
+        System.out.println(queryTeacher);
         try {
             boolean save = teacherService.save(queryTeacher);
             if(save){
@@ -71,24 +72,31 @@ public class TeacherController {
             }
         }catch (Exception e){
             TransactionAspectSupport.currentTransactionStatus().isRollbackOnly();
+            e.printStackTrace();
             throw  new MyException(ResultCode.error,e.getMessage());
         }
     }
     //修改教师列表
-    @PutMapping("updateTeacher")
+    @PutMapping("/updateTeacher")
     @ApiOperation("修改教师信息")
-    public Result updateTeacher(){
+    public Result updateTeacher(Teacher queryTeacher){
         //todo
-   //     teacherService.update()
-
-
-        return null;
+        System.out.println(queryTeacher+"111111");
+        boolean b1 = teacherService.updateById(queryTeacher);
+        if(b1){
+            return  Result.ok();
+        }else{
+            return Result.error();
+        }
+    }
+    //根据ID获取教师信息
+    @GetMapping("/getTeacher/{id}")
+    public Result getTeacher(@PathVariable("id")Long userId){
+        Teacher teacher = teacherService.getById(userId);
+        return Result.ok().data("teacher",teacher);
 
     }
     //有条件的查询教师列表分页
-
-
-
     @PostMapping("/query/{current}/{size}")
     @ApiOperation("有条件的查询老师列表")
     public Result queryTeacher(@PathVariable("current") long current, @PathVariable("size") long size,
