@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
@@ -246,7 +247,7 @@ public class ossUploadServiceImp implements OssUploadService {
         String format = dateFormat.format(new Date());
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         String fileName = file.getOriginalFilename().trim();
-        String filePath =(bucketName+"/"+format+ "/"+uuid+"/"+fileName).replaceAll("/","//");
+        String filePath =(format+ "/"+uuid+"/"+fileName).replaceAll("/","//");
         if(fileName.length() == 0){
             return;
         }
@@ -256,7 +257,13 @@ public class ossUploadServiceImp implements OssUploadService {
         // 创建PutObjectRequest对象。
         // 填写Bucket名称、Object完整路径和本地文件的完整路径。Object完整路径中不能包含Bucket名称。
         // 如果未指定本地路径，则默认从示例程序所属项目对应本地路径中上传文件。
-        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName, new File(filePath));
+        InputStream inputStream = null;
+        try {
+            inputStream = file.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,inputStream);
 
         // 如果需要上传时设置存储类型和访问权限，请参考以下示例代码。
         // ObjectMetadata metadata = new ObjectMetadata();
@@ -265,7 +272,11 @@ public class ossUploadServiceImp implements OssUploadService {
         // putObjectRequest.setMetadata(metadata);
         // 上传文件。
         ossClient.putObject(putObjectRequest);
-
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // 关闭OSSClient。
         ossClient.shutdown();
     }
