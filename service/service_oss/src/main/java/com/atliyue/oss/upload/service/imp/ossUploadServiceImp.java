@@ -247,7 +247,7 @@ public class ossUploadServiceImp implements OssUploadService {
         String format = dateFormat.format(new Date());
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         String fileName = file.getOriginalFilename().trim();
-        String filePath =(format+ "/"+uuid+"/"+fileName).replaceAll("/","//");
+        String filePath =(format+ "/"+uuid+"/"+fileName);
         if(fileName.length() == 0){
             return;
         }
@@ -263,7 +263,7 @@ public class ossUploadServiceImp implements OssUploadService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, fileName,inputStream);
+        PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, filePath,inputStream);
 
         // 如果需要上传时设置存储类型和访问权限，请参考以下示例代码。
         // ObjectMetadata metadata = new ObjectMetadata();
