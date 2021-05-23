@@ -1,8 +1,8 @@
 package com.atliyue.oss.utils;
 
-import lombok.Data;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,28 +14,29 @@ import org.springframework.stereotype.Component;
  * String accessKeySecret = "yourAccessKeySecret";
  */
 @Component
-@ConfigurationProperties(prefix = "com.atliyue")
-@Data
+@Order(0)
 public class ConstantUtil implements InitializingBean {
-
+    @Value("${com.atliyue.endpoint}")
     private String endpoint;
-
+    @Value("${com.atliyue.accessKeyId}")
     private String accessKeyId;
-
+    @Value("${com.atliyue.accessKeySecret}")
     private String accessKeySecret;
-
+    @Value("${com.atliyue.bucketName}")
     private String bucketName;
 
-    public static String END_POINT;
+    public static  String END_POINT ;
     public static String ACCESS_KEY_ID;
     public static String ACCESS_KEY_SECRET;
     public static String BUCKET_NAME;
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        this.END_POINT = endpoint;
-        this.ACCESS_KEY_ID = accessKeyId;
-        this.ACCESS_KEY_SECRET = accessKeySecret;
-        this.BUCKET_NAME =bucketName;
+        END_POINT = this.endpoint;
+        ACCESS_KEY_ID = this.accessKeyId;
+        ACCESS_KEY_SECRET = this.accessKeySecret;
+        BUCKET_NAME =this.bucketName;
     }
+
+
 }
