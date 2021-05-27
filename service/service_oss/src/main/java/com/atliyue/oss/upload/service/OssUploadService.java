@@ -14,5 +14,5 @@ public interface OssUploadService {
      * 上传文件
      * @param file
      */
-    void ossUploadFile(MultipartFile file);
+    String  ossUploadFile(MultipartFile file);
 }

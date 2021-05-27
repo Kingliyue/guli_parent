@@ -242,15 +242,13 @@ public class ossUploadServiceImp implements OssUploadService {
     }*/
 
     @Override
-    public void ossUploadFile(MultipartFile file) {
+    public String ossUploadFile(MultipartFile file) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         String format = dateFormat.format(new Date());
         String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         String fileName = file.getOriginalFilename().trim();
         String filePath =(format+ "/"+uuid+"/"+fileName);
-        if(fileName.length() == 0){
-            return;
-        }
+
         // 创建OSSClient实例。
         OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
@@ -279,6 +277,7 @@ public class ossUploadServiceImp implements OssUploadService {
         }
         // 关闭OSSClient。
         ossClient.shutdown();
+        return "https://"+bucketName+"."+endpoint+"/"+filePath;
     }
 
 }
