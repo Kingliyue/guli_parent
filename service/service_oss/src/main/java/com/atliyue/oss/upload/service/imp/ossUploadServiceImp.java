@@ -280,4 +280,8 @@ public class ossUploadServiceImp implements OssUploadService {
         return "https://"+bucketName+"."+endpoint+"/"+filePath;
     }
 
+    @Override
+    public String ossUploadExcel(MultipartFile file) {
+        return null;
+    }
 }

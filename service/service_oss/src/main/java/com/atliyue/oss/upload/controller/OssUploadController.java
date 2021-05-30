@@ -24,7 +24,7 @@ public class OssUploadController {
     @Autowired
     private OssUploadService ossUploadService;
     @PostMapping("/upload")
-    @ApiOperation("上传文件")
+    @ApiOperation("上传头像")
     public Result uploadOss(MultipartFile file){
         String url = "";
         try {

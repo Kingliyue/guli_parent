@@ -11,8 +11,12 @@ public interface OssUploadService {
     void ossUpload(MultipartFile file);
 
     /**
-     * 上传文件
+     * 上传头像
      * @param file
      */
     String  ossUploadFile(MultipartFile file);
+    /**
+     * 上传文件
+     */
+    String ossUploadExcel(MultipartFile file);
 }
