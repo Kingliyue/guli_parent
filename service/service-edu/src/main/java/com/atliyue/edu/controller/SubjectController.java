@@ -6,6 +6,7 @@ import com.liyue.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,11 +23,12 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/edu/subject")
 @Api
+@CrossOrigin
 public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
-    @PostMapping("/read")
+    @PostMapping("/upload")
     @ApiOperation("分析文件")
     public Result uploadExcel(MultipartFile file) {
         try {
@@ -35,6 +37,13 @@ public class SubjectController {
         } catch (Exception e) {
             return Result.error();
         }
+        return Result.ok();
+    }
+    @PostMapping("/down")
+    public Result downExcel(){
+
+
+
         return Result.ok();
     }
 
