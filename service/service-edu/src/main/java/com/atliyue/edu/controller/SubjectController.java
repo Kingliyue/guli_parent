@@ -31,12 +31,8 @@ public class SubjectController {
     @PostMapping("/upload")
     @ApiOperation("分析文件")
     public Result uploadExcel(MultipartFile file) {
-        try {
 
-            subjectService.saveSubject(file, subjectService);
-        } catch (Exception e) {
-            return Result.error();
-        }
+        subjectService.saveSubject(file, subjectService);
         return Result.ok();
     }
     @PostMapping("/down")
