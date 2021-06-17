@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atliyue.edu.mapper.SubjectMapper">
+    <select id="getSubjectAll" resultMap="subject" >
+        select t.id ,t.title,s.id as s_id ,s.title as s_title from
+        edu_subject t INNER JOIN edu_subject s ON t.id = s.parent_id
+    </select>
+    
+    <resultMap id="subject" type="com.atliyue.edu.vo.SubjectVo">
+        <result column="id" property="id"></result>
+        <result column="title" property="title"></result>
+        <collection property="childSubject" ofType="com.atliyue.edu.vo.ChildSubjectVo">
+            <result column="s_id" property="id"></result>
+            <result column="s_title" property="title"></result>
+        </collection>
+    </resultMap>
 
+    <select id="selectSubject" resultType="com.atliyue.edu.entity.Subject">
+        select * from edu_subject
+    </select>
 </mapper>

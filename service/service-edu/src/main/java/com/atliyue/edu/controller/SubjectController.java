@@ -1,6 +1,7 @@
 package com.atliyue.edu.controller;
 
 
+import com.atliyue.edu.entity.Subject;
 import com.atliyue.edu.service.SubjectService;
 import com.liyue.result.Result;
 import io.swagger.annotations.Api;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -38,9 +41,8 @@ public class SubjectController {
     @PostMapping("/down")
     public Result downExcel(){
 
-
-
-        return Result.ok();
+        List<Subject> subjectAll = subjectService.getSubjectAll();
+        return Result.ok().data("list",subjectAll);
     }
 
 }

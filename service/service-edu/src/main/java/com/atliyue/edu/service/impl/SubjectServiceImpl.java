@@ -8,8 +8,11 @@ import com.atliyue.edu.service.SubjectService;
 import com.atliyue.edu.vo.SubjectData;
 import com.atliyue.exception.MyException;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Service
 public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> implements SubjectService {
+    @Autowired
+    private  SubjectMapper subjectMapper;
     @Override
     public void saveSubject(MultipartFile file, SubjectService subjectService) {
         try {
@@ -30,5 +35,12 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
             throw new MyException(20001, e.getMessage());
         }
 
+    }
+
+    @Override
+    public List<Subject> getSubjectAll() {
+
+        List<Subject> subjects = subjectMapper.selectSubject();
+        return subjects;
     }
 }
