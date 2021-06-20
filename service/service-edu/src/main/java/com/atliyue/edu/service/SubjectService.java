@@ -1,6 +1,7 @@
 package com.atliyue.edu.service;
 
 import com.atliyue.edu.entity.Subject;
+import com.atliyue.edu.vo.SubjectVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,6 +19,6 @@ public interface SubjectService extends IService<Subject> {
 
     void saveSubject(MultipartFile file,SubjectService subjectService);
 
-    List<Subject> getSubjectAll();
+    List<SubjectVo> getSubjectAll();
 
 }

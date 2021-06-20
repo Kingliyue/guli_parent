@@ -1,8 +1,8 @@
 package com.atliyue.edu.controller;
 
 
-import com.atliyue.edu.entity.Subject;
 import com.atliyue.edu.service.SubjectService;
+import com.atliyue.edu.vo.SubjectVo;
 import com.liyue.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -41,7 +41,7 @@ public class SubjectController {
     @PostMapping("/down")
     public Result downExcel(){
 
-        List<Subject> subjectAll = subjectService.getSubjectAll();
+        List<SubjectVo> subjectAll = subjectService.getSubjectAll();
         return Result.ok().data("list",subjectAll);
     }
 

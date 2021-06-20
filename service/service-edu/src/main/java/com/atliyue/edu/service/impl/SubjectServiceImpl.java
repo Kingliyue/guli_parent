@@ -4,8 +4,10 @@ import com.alibaba.excel.EasyExcel;
 import com.atliyue.edu.config.EasyExcelListen;
 import com.atliyue.edu.entity.Subject;
 import com.atliyue.edu.mapper.SubjectMapper;
+import com.atliyue.edu.mapper.SubjectVoMapper;
 import com.atliyue.edu.service.SubjectService;
 import com.atliyue.edu.vo.SubjectData;
+import com.atliyue.edu.vo.SubjectVo;
 import com.atliyue.exception.MyException;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ import java.util.List;
 @Service
 public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> implements SubjectService {
     @Autowired
-    private  SubjectMapper subjectMapper;
+    private SubjectVoMapper subjectMapper;
     @Override
     public void saveSubject(MultipartFile file, SubjectService subjectService) {
         try {
@@ -38,9 +40,8 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
     }
 
     @Override
-    public List<Subject> getSubjectAll() {
-
-        List<Subject> subjects = subjectMapper.selectSubject();
-        return subjects;
+    public List<SubjectVo> getSubjectAll() {
+        List<SubjectVo> subjectAll = subjectMapper.getSubjectAll();
+        return subjectAll;
     }
 }
