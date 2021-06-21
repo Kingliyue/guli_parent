@@ -7,10 +7,7 @@ import com.liyue.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -38,10 +35,11 @@ public class SubjectController {
         subjectService.saveSubject(file, subjectService);
         return Result.ok();
     }
-    @PostMapping("/down")
+    @GetMapping("/list")
     public Result downExcel(){
 
         List<SubjectVo> subjectAll = subjectService.getSubjectAll();
+        System.out.println(subjectAll);
         return Result.ok().data("list",subjectAll);
     }
 

@@ -11,7 +11,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * <p>
@@ -37,7 +36,7 @@ public class Subject implements Serializable {
     @ApiModelProperty(value = "类别名称")
     private String title;
 
-    @ExcelProperty(value = "",index = 0)
+    @ExcelProperty(value = "", index = 0)
     @ApiModelProperty(value = "父ID")
     private String parentId;
 
@@ -54,21 +53,4 @@ public class Subject implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date gmtModified;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Subject subject = (Subject) o;
-        return Objects.equals(id, subject.id) &&
-                Objects.equals(title, subject.title) &&
-                Objects.equals(parentId, subject.parentId) &&
-                Objects.equals(sort, subject.sort) &&
-                Objects.equals(gmtCreate, subject.gmtCreate) &&
-                Objects.equals(gmtModified, subject.gmtModified);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, title, parentId, sort, gmtCreate, gmtModified);
-    }
 }
