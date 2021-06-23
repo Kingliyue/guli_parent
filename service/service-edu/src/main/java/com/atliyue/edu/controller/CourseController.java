@@ -5,13 +5,9 @@ import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseVo;
 import com.liyue.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.xml.ws.soap.Addressing;
 
 /**
  * <p>
@@ -29,7 +25,9 @@ public class CourseController {
     @PostMapping("addCourse")
     public Result addCourse(CourseVo courseVo){
 
-        courseService.save(null);
+        courseService.saveCourseAndCorseDesc(courseVo);
+
+        return Result.ok();
     }
 
 

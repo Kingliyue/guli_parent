@@ -1,6 +1,7 @@
 package com.atliyue.edu.service;
 
 import com.atliyue.edu.entity.Course;
+import com.atliyue.edu.vo.CourseVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CourseService extends IService<Course> {
 
+    void saveCourseAndCorseDesc(CourseVo courseVo);
 }
