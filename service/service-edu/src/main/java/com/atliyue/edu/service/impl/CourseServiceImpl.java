@@ -6,6 +6,7 @@ import com.atliyue.edu.mapper.CourseDescriptionMapper;
 import com.atliyue.edu.mapper.CourseMapper;
 import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseVo;
+import com.atliyue.exception.MyException;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,10 +31,16 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         Course course =new Course();
         BeanUtils.copyProperties(courseVo,course);
         //1.保存到课程表中
-        baseMapper.insert(course);
+        int insert = baseMapper.insert(course);
+        if (insert == 0){
+            throw  new MyException(200001,"保存课程信息异常");
+        }
+        //1.1获取课程id
+        String id =course.getId();
         //2.保存到课程描述表中
         CourseDescription courseDescription = new CourseDescription();
         BeanUtils.copyProperties(courseVo,courseDescription);
+        courseDescription.setId(id);
         descriptionMapper.insert(courseDescription);
     }
 }
