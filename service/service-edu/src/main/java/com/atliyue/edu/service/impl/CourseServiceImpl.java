@@ -27,7 +27,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     private CourseDescriptionMapper descriptionMapper;
     @Override
     @Transactional
-    public void saveCourseAndCorseDesc(CourseVo courseVo) {
+    public String saveCourseAndCorseDesc(CourseVo courseVo) {
         Course course =new Course();
         BeanUtils.copyProperties(courseVo,course);
         //1.保存到课程表中
@@ -42,5 +42,6 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         BeanUtils.copyProperties(courseVo,courseDescription);
         courseDescription.setId(id);
         descriptionMapper.insert(courseDescription);
+        return id;
     }
 }
