@@ -4,11 +4,9 @@ package com.atliyue.edu.controller;
 import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseVo;
 import com.liyue.result.Result;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -20,18 +18,23 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/edu/course")
+@Api
 @CrossOrigin
 public class CourseController {
     @Autowired
     private CourseService courseService;
     @PostMapping("addCourse")
-    public Result addCourse(CourseVo courseVo){
+    public Result addCourse(@RequestBody CourseVo courseVo){
 
         String id = courseService.saveCourseAndCorseDesc(courseVo);
 
         return Result.ok().data("courseId",id);
     }
-
+    @GetMapping("getCourse")
+    public Result getCourse(@RequestParam("courseId")String courseId){
+        CourseVo courseVo = courseService.selectCourseAndCorseDesc(courseId);
+        return Result.ok().data("courseVo",courseVo);
+    }
 
 
 }

@@ -15,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface CourseService extends IService<Course> {
 
     String  saveCourseAndCorseDesc(CourseVo courseVo);
+
+    CourseVo selectCourseAndCorseDesc(String courseId);
 }

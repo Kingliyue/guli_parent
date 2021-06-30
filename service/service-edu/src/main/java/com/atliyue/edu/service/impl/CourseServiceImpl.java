@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+
 /**
  * <p>
  * 课程 服务实现类
@@ -23,8 +25,26 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService {
+    @Resource
     @Autowired
     private CourseDescriptionMapper descriptionMapper;
+    @Resource
+    @Autowired
+    private CourseMapper courseMapper;
+    @Override
+    @Transactional
+    public CourseVo selectCourseAndCorseDesc(String courseId) {
+        //获取课程描述
+        CourseDescription courseDescription = descriptionMapper.selectById(courseId);
+        Course course = courseMapper.selectById(courseId);
+        CourseVo courseVo = new CourseVo();
+
+        BeanUtils.copyProperties(course,courseVo);
+        BeanUtils.copyProperties(courseDescription,courseVo);
+        return  courseVo;
+
+    }
+
     @Override
     @Transactional
     public String saveCourseAndCorseDesc(CourseVo courseVo) {
