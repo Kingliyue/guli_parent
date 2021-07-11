@@ -35,7 +35,11 @@ public class CourseController {
         CourseVo courseVo = courseService.selectCourseAndCorseDesc(courseId);
         return Result.ok().data("courseVo",courseVo);
     }
-
+    @PutMapping("update")
+    public Result updateCourse(@RequestBody CourseVo courseVo){
+        courseService.updateCourseAndCorseDesc(courseVo);
+        return  Result.ok();
+    }
 
 }
 

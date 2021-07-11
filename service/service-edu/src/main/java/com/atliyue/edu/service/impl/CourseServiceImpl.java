@@ -46,6 +46,18 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     }
 
     @Override
+    public void updateCourseAndCorseDesc(CourseVo courseVo) {
+
+        CourseDescription courseDescription = new CourseDescription();
+        BeanUtils.copyProperties(courseVo,courseDescription);
+        Course course =new Course();
+
+        baseMapper.updateById(course);
+
+        descriptionMapper.updateById(courseDescription);
+    }
+
+    @Override
     @Transactional
     public String saveCourseAndCorseDesc(CourseVo courseVo) {
         Course course =new Course();
