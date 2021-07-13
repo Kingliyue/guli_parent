@@ -1,7 +1,10 @@
 package com.atliyue.edu.service;
 
 import com.atliyue.edu.entity.Chapter;
+import com.atliyue.edu.vo.ChapterVo;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-06-23
  */
 public interface ChapterService extends IService<Chapter> {
-
+    List<ChapterVo> getChapterAndVideoList();
 }

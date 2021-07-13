@@ -2,9 +2,14 @@ package com.atliyue.edu.service.impl;
 
 import com.atliyue.edu.entity.Chapter;
 import com.atliyue.edu.mapper.ChapterMapper;
+import com.atliyue.edu.mapper.ChapterVoMapper;
 import com.atliyue.edu.service.ChapterService;
+import com.atliyue.edu.vo.ChapterVo;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,4 +22,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> implements ChapterService {
 
+    @Autowired
+    private ChapterVoMapper chapterVoMapper;
+    @Override
+    public List<ChapterVo> getChapterAndVideoList() {
+        List<ChapterVo> chapterAndVideoList = chapterVoMapper.getChapterAndVideoList();
+        return chapterAndVideoList;
+    }
 }

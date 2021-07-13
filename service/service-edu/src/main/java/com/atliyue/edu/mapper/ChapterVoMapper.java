@@ -1,7 +1,9 @@
 package com.atliyue.edu.mapper;
 
-import com.atliyue.edu.entity.Chapter;
+import com.atliyue.edu.vo.ChapterVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -11,7 +13,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author liYue
  * @since 2021-06-23
  */
-public interface ChapterMapper extends BaseMapper<Chapter> {
+public interface ChapterVoMapper extends BaseMapper<ChapterVo> {
 
-
+    List<ChapterVo> getChapterAndVideoList();
 }

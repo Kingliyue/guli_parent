@@ -8,6 +8,7 @@ import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseVo;
 import com.atliyue.exception.MyException;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,9 @@ import javax.annotation.Resource;
  * @since 2021-06-23
  */
 @Service
+@Slf4j
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService {
+
     @Resource
     @Autowired
     private CourseDescriptionMapper descriptionMapper;
@@ -38,9 +41,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         CourseDescription courseDescription = descriptionMapper.selectById(courseId);
         Course course = courseMapper.selectById(courseId);
         CourseVo courseVo = new CourseVo();
-
         BeanUtils.copyProperties(course,courseVo);
+        log.info(String.format("CourseServiceImpl#selectCourseAndCorseDesc#%s",course));
         BeanUtils.copyProperties(courseDescription,courseVo);
+        log.info(String.format("CourseServiceImpl#selectCourseAndCorseDesc#%s",courseDescription));
         return  courseVo;
 
     }
@@ -51,7 +55,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         CourseDescription courseDescription = new CourseDescription();
         BeanUtils.copyProperties(courseVo,courseDescription);
         Course course =new Course();
-
+        BeanUtils.copyProperties(courseVo,course);
         baseMapper.updateById(course);
 
         descriptionMapper.updateById(courseDescription);

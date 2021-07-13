@@ -31,13 +31,11 @@ public class SubjectController {
     @PostMapping("/upload")
     @ApiOperation("分析文件")
     public Result uploadExcel(MultipartFile file) {
-
         subjectService.saveSubject(file, subjectService);
         return Result.ok();
     }
     @GetMapping("/list")
     public Result downExcel(){
-
         List<SubjectVo> subjectAll = subjectService.getSubjectAll();
         System.out.println(subjectAll);
             return Result.ok().data("list",subjectAll);

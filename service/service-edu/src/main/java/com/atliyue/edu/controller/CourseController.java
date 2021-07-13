@@ -23,22 +23,22 @@ import org.springframework.web.bind.annotation.*;
 public class CourseController {
     @Autowired
     private CourseService courseService;
+
     @PostMapping("addCourse")
-    public Result addCourse(@RequestBody CourseVo courseVo){
-
+    public Result addCourse(@RequestBody CourseVo courseVo) {
         String id = courseService.saveCourseAndCorseDesc(courseVo);
-
-        return Result.ok().data("courseId",id);
+        return Result.ok().data("courseId", id);
     }
+
     @GetMapping("getCourse")
-    public Result getCourse(@RequestParam("courseId")String courseId){
+    public Result getCourse(@RequestParam("courseId") String courseId) {
         CourseVo courseVo = courseService.selectCourseAndCorseDesc(courseId);
-        return Result.ok().data("courseVo",courseVo);
+        return Result.ok().data("courseVo", courseVo);
     }
     @PutMapping("update")
-    public Result updateCourse(@RequestBody CourseVo courseVo){
+    public Result updateCourse(@RequestBody CourseVo courseVo) {
         courseService.updateCourseAndCorseDesc(courseVo);
-        return  Result.ok();
+        return Result.ok();
     }
 
 }
