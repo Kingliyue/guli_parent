@@ -6,9 +6,7 @@ import com.atliyue.edu.vo.ChapterVo;
 import com.liyue.result.Result;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,13 +21,14 @@ import java.util.List;
 @RestController
 @RequestMapping("/edu/chapter")
 @Api
+@CrossOrigin
 public class ChapterController {
     @Autowired
     private ChapterService chapterService;
     //获取章节小节的信息
-    @GetMapping("getChapterAndVideo")
-    public Result getChapterAndVideo(){
-        List<ChapterVo> chapterAndVideoList = chapterService.getChapterAndVideoList();
+    @GetMapping("getChapterAndVideo/{courseId}")
+    public Result getChapterAndVideo(@PathVariable String courseId){
+        List<ChapterVo> chapterAndVideoList = chapterService.getChapterAndVideoList(courseId);
         return Result.ok().data("list",chapterAndVideoList);
     }
 

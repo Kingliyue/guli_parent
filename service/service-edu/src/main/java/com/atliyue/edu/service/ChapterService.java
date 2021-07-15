@@ -15,5 +15,5 @@ import java.util.List;
  * @since 2021-06-23
  */
 public interface ChapterService extends IService<Chapter> {
-    List<ChapterVo> getChapterAndVideoList();
+    List<ChapterVo> getChapterAndVideoList(String courseId);
 }

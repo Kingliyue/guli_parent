@@ -25,8 +25,8 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
     @Autowired
     private ChapterVoMapper chapterVoMapper;
     @Override
-    public List<ChapterVo> getChapterAndVideoList() {
-        List<ChapterVo> chapterAndVideoList = chapterVoMapper.getChapterAndVideoList();
+    public List<ChapterVo> getChapterAndVideoList(String courseId) {
+        List<ChapterVo> chapterAndVideoList = chapterVoMapper.getChapterAndVideoList(courseId);
         return chapterAndVideoList;
     }
 }
