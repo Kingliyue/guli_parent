@@ -1,6 +1,7 @@
 package com.atliyue.edu.controller;
 
 
+import com.atliyue.edu.entity.Course;
 import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseVo;
 import com.liyue.result.Result;
@@ -30,8 +31,8 @@ public class CourseController {
         return Result.ok().data("courseId", id);
     }
 
-    @GetMapping("getCourse")
-    public Result getCourse(@RequestParam("courseId") String courseId) {
+    @GetMapping("/getCourse/{courseId}")
+    public Result getCourse(@PathVariable("courseId") String courseId) {
         CourseVo courseVo = courseService.selectCourseAndCorseDesc(courseId);
         return Result.ok().data("courseVo", courseVo);
     }
@@ -40,6 +41,13 @@ public class CourseController {
         courseService.updateCourseAndCorseDesc(courseVo);
         return Result.ok();
     }
+    @GetMapping("select")
+    public Result select(@RequestParam String id){
+        Course  course = courseService.selectCourse(id);
+        return Result.ok().data("course",course);
+    }
+
+
 
 }
 

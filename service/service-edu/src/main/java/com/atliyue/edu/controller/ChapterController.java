@@ -26,8 +26,8 @@ public class ChapterController {
     @Autowired
     private ChapterService chapterService;
     //获取章节小节的信息
-    @GetMapping("getChapterAndVideo/{courseId}")
-    public Result getChapterAndVideo(@PathVariable String courseId){
+    @GetMapping("getChapterAndVideo")
+    public Result getChapterAndVideo(@RequestParam("courseId") String courseId){
         List<ChapterVo> chapterAndVideoList = chapterService.getChapterAndVideoList(courseId);
         return Result.ok().data("list",chapterAndVideoList);
     }

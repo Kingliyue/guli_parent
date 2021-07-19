@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atliyue.edu.mapper.CourseMapper">
-
+    <select id="selectCourseById" resultType="com.atliyue.edu.entity.Course" parameterType="String">
+        SELECT * from edu_course t where t.id = #{courseId}#
+    </select>
 </mapper>

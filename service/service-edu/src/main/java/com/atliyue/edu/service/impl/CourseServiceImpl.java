@@ -14,8 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
-
 /**
  * <p>
  * 课程 服务实现类
@@ -28,18 +26,26 @@ import javax.annotation.Resource;
 @Slf4j
 public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> implements CourseService {
 
-    @Resource
+
     @Autowired
     private CourseDescriptionMapper descriptionMapper;
-    @Resource
     @Autowired
     private CourseMapper courseMapper;
+
+    @Override
+    public Course selectCourse(String courseId) {
+        return courseMapper.selectCourseById(courseId);
+    }
+
     @Override
     @Transactional
     public CourseVo selectCourseAndCorseDesc(String courseId) {
         //获取课程描述
         CourseDescription courseDescription = descriptionMapper.selectById(courseId);
-        Course course = courseMapper.selectById(courseId);
+        Course course = courseMapper.selectCourseById(courseId);
+        if(courseDescription == null || course == null ){
+            throw new  MyException(20001,"查询课程信息异常");
+        }
         CourseVo courseVo = new CourseVo();
         BeanUtils.copyProperties(course,courseVo);
         log.info(String.format("CourseServiceImpl#selectCourseAndCorseDesc#%s",course));
@@ -67,7 +73,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         Course course =new Course();
         BeanUtils.copyProperties(courseVo,course);
         //1.保存到课程表中
-        int insert = baseMapper.insert(course);
+        int insert =courseMapper.insert(course);
         if (insert == 0){
             throw  new MyException(200001,"保存课程信息异常");
         }

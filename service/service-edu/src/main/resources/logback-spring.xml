@@ -100,7 +100,7 @@
     <!--配置多环境日志输出  可以在application.properties中配置选择哪个profiles : spring.profiles.active=dev-->
     <!--开发环境:打印控制台-->
     <springProfile name="dev">
-        <root level="debug">
+        <root level="info">
             <appender-ref ref="stdout" />
             <appender-ref ref="infoFile" />
             <appender-ref ref="errorFile" />

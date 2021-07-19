@@ -19,4 +19,6 @@ public interface CourseService extends IService<Course> {
     CourseVo selectCourseAndCorseDesc(String courseId);
 
     void updateCourseAndCorseDesc(CourseVo courseVo);
+
+    Course selectCourse(String courseId);
 }
