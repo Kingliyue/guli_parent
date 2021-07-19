@@ -6,6 +6,7 @@ import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseVo;
 import com.liyue.result.Result;
 import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,12 +22,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/edu/course")
 @Api
 @CrossOrigin
+@Slf4j
 public class CourseController {
     @Autowired
     private CourseService courseService;
 
     @PostMapping("addCourse")
     public Result addCourse(@RequestBody CourseVo courseVo) {
+        log.info("{},{},{},{}","CourseController","addCourse","传入的值:",courseVo);
         String id = courseService.saveCourseAndCorseDesc(courseVo);
         return Result.ok().data("courseId", id);
     }

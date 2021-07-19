@@ -56,14 +56,17 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     }
 
     @Override
+    @Transactional
     public void updateCourseAndCorseDesc(CourseVo courseVo) {
-
         CourseDescription courseDescription = new CourseDescription();
         BeanUtils.copyProperties(courseVo,courseDescription);
         Course course =new Course();
         BeanUtils.copyProperties(courseVo,course);
-        baseMapper.updateById(course);
-
+        course.setId(courseDescription.getId());
+        int i = baseMapper.updateById(course);
+        if(i ==0){
+            throw  new MyException(200001,"修改信息异常");
+        }
         descriptionMapper.updateById(courseDescription);
     }
 

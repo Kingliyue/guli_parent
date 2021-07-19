@@ -38,13 +38,14 @@ public class TeacherController {
     @GetMapping("/list")
     @ApiOperation("教师列表")
     public Result getListTeacher() {
-        List<Teacher> list = teacherService.list(null);
-        return Result.ok().data("item", list);
+        QueryWrapper queryWrapper = new QueryWrapper();
+        List<Teacher> list = teacherService.list(queryWrapper);
+        return Result.ok().data("list", list);
     }
     @DeleteMapping("/delete/{id}")
     @ApiOperation("删除教师")
     @Transactional
-    public Result deleteTeacher(@PathVariable("id") Long userId) {
+    public Result deleteTeacher(@PathVariable("id") String userId) {
         System.out.println(userId +"----------");
         boolean b = true;
         try {
@@ -91,7 +92,7 @@ public class TeacherController {
     }
     //根据ID获取教师信息
     @GetMapping("/getTeacher/{id}")
-    public Result getTeacher(@PathVariable("id")Long userId){
+    public Result getTeacher(@PathVariable("id")String userId){
         Teacher teacher = teacherService.getById(userId);
         return Result.ok().data("teacher",teacher);
 

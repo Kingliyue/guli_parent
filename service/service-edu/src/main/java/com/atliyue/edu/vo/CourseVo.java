@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 
 @Data
 public class CourseVo implements Serializable {
+    private String  id;
     @ApiModelProperty(value = "课程讲师ID")
     private String teacherId;
 
