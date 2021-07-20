@@ -1,6 +1,7 @@
 package com.atliyue.edu.controller;
 
 
+import com.atliyue.edu.entity.Chapter;
 import com.atliyue.edu.service.ChapterService;
 import com.atliyue.edu.vo.ChapterVo;
 import com.liyue.result.Result;
@@ -31,6 +32,15 @@ public class ChapterController {
         List<ChapterVo> chapterAndVideoList = chapterService.getChapterAndVideoList(courseId);
         return Result.ok().data("list",chapterAndVideoList);
     }
-
+    @PostMapping("saveChapter")
+    public Result saveChapter(@RequestBody Chapter chapter){
+        chapterService.saveChaperAndVideo(chapter);
+        return Result.ok();
+    }
+    @PutMapping("updateChapter")
+    public Result updateChapter(@RequestBody Chapter chapter){
+        chapterService.updateChapter(chapter);
+        return Result.ok();
+    }
 }
 
