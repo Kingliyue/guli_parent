@@ -34,12 +34,17 @@ public class ChapterController {
     }
     @PostMapping("saveChapter")
     public Result saveChapter(@RequestBody Chapter chapter){
-        chapterService.saveChaperAndVideo(chapter);
+        chapterService.saveChapter(chapter);
         return Result.ok();
     }
     @PutMapping("updateChapter")
     public Result updateChapter(@RequestBody Chapter chapter){
         chapterService.updateChapter(chapter);
+        return Result.ok();
+    }
+    @GetMapping("getChapter")
+    public Result getChapter(String chapterId){
+        chapterService.getChapter(chapterId);
         return Result.ok();
     }
 }

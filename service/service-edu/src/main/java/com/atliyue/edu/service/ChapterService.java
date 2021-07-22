@@ -17,7 +17,11 @@ import java.util.List;
 public interface ChapterService extends IService<Chapter> {
     List<ChapterVo> getChapterAndVideoList(String courseId);
 
-    String  saveChaperAndVideo(Chapter chapter);
+    String  saveChapter(Chapter chapter);
 
     String updateChapter(Chapter chapter);
+
+    Chapter getChapter(String chapterId);
+
+
 }

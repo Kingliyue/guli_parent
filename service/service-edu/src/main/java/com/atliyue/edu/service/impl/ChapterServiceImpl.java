@@ -28,7 +28,7 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
     @Autowired
     private VideoMapper videoMapper;
     @Override
-    public String saveChaperAndVideo(Chapter chapter) {
+    public String saveChapter(Chapter chapter) {
         baseMapper.insert(chapter);
         return null;
     }
@@ -43,5 +43,11 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
     public String updateChapter(Chapter chapter) {
         baseMapper.updateById(chapter);
         return null;
+    }
+
+    @Override
+    public Chapter getChapter(String chapterId) {
+
+        return baseMapper.selectById(chapterId);
     }
 }
