@@ -27,18 +27,18 @@ public class ChapterController {
     @Autowired
     private ChapterService chapterService;
     //获取章节小节的信息
-    @GetMapping("getChapterAndVideo")
-    public Result getChapterAndVideo(@RequestParam("courseId") String courseId){
+    @GetMapping("getChapterAndVideo/{courseId}")
+    public Result getChapterAndVideo(@PathVariable("courseId") String courseId){
         List<ChapterVo> chapterAndVideoList = chapterService.getChapterAndVideoList(courseId);
         return Result.ok().data("list",chapterAndVideoList);
     }
     @PostMapping("saveChapter")
-    public Result saveChapter(@RequestBody Chapter chapter){
+    public Result saveChapter(Chapter chapter){
         chapterService.saveChapter(chapter);
         return Result.ok();
     }
     @PutMapping("updateChapter")
-    public Result updateChapter(@RequestBody Chapter chapter){
+    public Result updateChapter(Chapter chapter){
         chapterService.updateChapter(chapter);
         return Result.ok();
     }
@@ -46,6 +46,12 @@ public class ChapterController {
     public Result getChapter(String chapterId){
         chapterService.getChapter(chapterId);
         return Result.ok();
+    }
+    @DeleteMapping("deleteChaptre/{courseId}")
+    public Result deleteChapter(@PathVariable String courseId){
+        chapterService.removeById(courseId);
+        return  Result.ok();
+
     }
 }
 
