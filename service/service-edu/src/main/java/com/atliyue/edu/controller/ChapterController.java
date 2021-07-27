@@ -42,16 +42,15 @@ public class ChapterController {
         chapterService.updateChapter(chapter);
         return Result.ok();
     }
-    @GetMapping("getChapter")
-    public Result getChapter(String chapterId){
-        chapterService.getChapter(chapterId);
-        return Result.ok();
+    @GetMapping("getChapter/{chapterId}")
+    public Result getChapter(@PathVariable String chapterId){
+        Chapter chapter = chapterService.getChapter(chapterId);
+        return Result.ok().data("chapter",chapter);
     }
-    @DeleteMapping("deleteChaptre/{courseId}")
+    @DeleteMapping("deleteChapter/{courseId}")
     public Result deleteChapter(@PathVariable String courseId){
         chapterService.removeById(courseId);
         return  Result.ok();
-
     }
 }
 
