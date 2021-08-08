@@ -101,7 +101,7 @@ public class TeacherController {
     @PostMapping("/query/{current}/{size}")
     @ApiOperation("有条件的查询老师列表")
     public Result queryTeacher(@PathVariable("current") long current, @PathVariable("size") long size,
-         @RequestParam(required = false) QueryTeacher queryTeacher) {
+          QueryTeacher queryTeacher) {
         //current当前第几页  、size每页大小
         System.out.println(queryTeacher+"-------------");
         IPage<Teacher> teacherPage = null;

@@ -16,4 +16,5 @@ import java.util.List;
 public interface ChapterVoMapper extends BaseMapper<ChapterVo> {
 
     List<ChapterVo> getChapterAndVideoList(String courseId);
+
 }

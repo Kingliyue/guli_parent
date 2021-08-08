@@ -5,6 +5,7 @@ import com.atliyue.edu.entity.CourseDescription;
 import com.atliyue.edu.mapper.CourseDescriptionMapper;
 import com.atliyue.edu.mapper.CourseMapper;
 import com.atliyue.edu.service.CourseService;
+import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseVo;
 import com.atliyue.exception.MyException;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -88,5 +89,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         courseDescription.setId(id);
         descriptionMapper.insert(courseDescription);
         return id;
+    }
+    @Override
+    public CourseInfoVo getCourseInfo(String courseId) {
+        CourseInfoVo courseInfo = courseMapper.getCourseInfo(courseId);
+        return courseInfo;
+
     }
 }

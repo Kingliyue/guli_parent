@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.atliyue.edu.mapper.CourseMapper">
-    <select id="selectCourseById" resultType="com.atliyue.edu.entity.Course" parameterType="String">
-        SELECT * from edu_course t where t.id = #{courseId}#
+    <select id="getCourseInfo" resultType="com.atliyue.edu.vo.CourseInfoVo" parameterType="String">
+      SELECT
+         c.title,
+         c.cover,
+         c.price,
+         t.name as teacherName,
+         c.lesson_num,
+         s.title as subjectLevelOne,
+         s1.title as subjectLevelTwo
+        FROM
+         edu_course c
+         LEFT JOIN edu_teacher t ON c.teacher_id = t.id
+         LEFT JOIN edu_subject s ON c.subject_parent_id =  s.id
+         LEFT JOIN edu_subject s1 ON c.subject_id = s1.id
+        where c.id = #{courseId}#
     </select>
 </mapper>

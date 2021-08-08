@@ -1,6 +1,7 @@
 package com.atliyue.edu.mapper;
 
 import com.atliyue.edu.entity.Course;
+import com.atliyue.edu.vo.CourseInfoVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -13,5 +14,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CourseMapper extends BaseMapper<Course> {
     Course selectCourseById(String courseId);
+
+    CourseInfoVo getCourseInfo(String courseId);
 
 }

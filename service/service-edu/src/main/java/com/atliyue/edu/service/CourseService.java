@@ -1,6 +1,7 @@
 package com.atliyue.edu.service;
 
 import com.atliyue.edu.entity.Course;
+import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -21,4 +22,8 @@ public interface CourseService extends IService<Course> {
     void updateCourseAndCorseDesc(CourseVo courseVo);
 
     Course selectCourse(String courseId);
+
+    CourseInfoVo getCourseInfo(String courseId);
+    //获取课程的全部信息
+
 }
