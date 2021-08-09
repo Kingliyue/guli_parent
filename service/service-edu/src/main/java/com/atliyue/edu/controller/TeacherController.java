@@ -101,25 +101,25 @@ public class TeacherController {
     @PostMapping("/query/{current}/{size}")
     @ApiOperation("有条件的查询老师列表")
     public Result queryTeacher(@PathVariable("current") long current, @PathVariable("size") long size,
-          QueryTeacher queryTeacher) {
+           QueryTeacher queryTeacher) {
         //current当前第几页  、size每页大小
         System.out.println(queryTeacher+"-------------");
         IPage<Teacher> teacherPage = null;
         try {
             Page page = new Page(current, size);
 
-            QueryWrapper wrapper = new QueryWrapper();
-            if (queryTeacher != null && "".equals(queryTeacher.getIntro())) {
-                wrapper.select("intro");
+            QueryWrapper wrapper = new QueryWrapper<QueryTeacher>();
+            if (queryTeacher != null && !"".equals(queryTeacher.getIntro())) {
+                wrapper.eq("intro",queryTeacher.getIntro());
             }
-            if (queryTeacher != null && "".equals(queryTeacher.getName())) {
-                wrapper.select("name");
+            if (queryTeacher != null && !"".equals(queryTeacher.getName())) {
+                wrapper.eq("name",queryTeacher.getName());
             }
-            if (queryTeacher != null && "".equals(queryTeacher.getGmtCreate())) {
-                wrapper.select("gmtCreate");
+            if (queryTeacher != null && !"".equals(queryTeacher.getGmtCreate())) {
+                wrapper.eq("gmt_create",queryTeacher.getGmtCreate());
             }
-            if (queryTeacher != null && "".equals(queryTeacher.getGmtModified())) {
-                wrapper.select("gmtModified");
+            if (queryTeacher != null && !"".equals(queryTeacher.getGmtModified())) {
+                wrapper.eq("gmt_modified",queryTeacher.getGmtModified());
             }
             teacherPage = teacherService.page(page, wrapper);
 

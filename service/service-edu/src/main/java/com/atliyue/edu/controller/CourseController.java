@@ -82,7 +82,7 @@ public class CourseController {
         if(courseQuery!=null&& StringUtils.isNotEmpty(courseQuery.getTitle())){
             queryWrapper.like("title",courseQuery.getTitle());
         }
-        if ( courseQuery!=null&& StringUtils.isNotEmpty(courseQuery.getStatus())){
+        if ( courseQuery!=null && StringUtils.isNotEmpty(courseQuery.getStatus())){
             queryWrapper.select("status");
         }
         IPage iPage = courseService.page(page1, queryWrapper);
