@@ -108,7 +108,7 @@ public class TeacherController {
         try {
             Page page = new Page(current, size);
 
-            QueryWrapper wrapper = new QueryWrapper(queryTeacher);
+            QueryWrapper wrapper = new QueryWrapper();
             if (queryTeacher != null && "".equals(queryTeacher.getIntro())) {
                 wrapper.select("intro");
             }

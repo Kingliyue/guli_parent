@@ -4,6 +4,7 @@ package com.atliyue.edu.controller;
 import com.atliyue.edu.entity.Course;
 import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseInfoVo;
+import com.atliyue.edu.vo.CourseQuery;
 import com.atliyue.edu.vo.CourseVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -72,19 +73,19 @@ public class CourseController {
         return Result.ok();
 
     }
-    @GetMapping("getCourseList/{page}/{limit}")
+    @PostMapping("getCourseList/{page}/{limit}")
     public Result getCourseList(@PathVariable long page, @PathVariable long limit,
-                                Course courseQuery){
+                                @RequestBody CourseQuery courseQuery){
         Page page1 = new Page(page,limit);
-        QueryWrapper queryWrapper = new QueryWrapper<>(courseQuery);
-        if(queryWrapper!= null && StringUtils.isNoneEmpty(courseQuery.getTitle())){
-            queryWrapper.select("title");
+
+        QueryWrapper queryWrapper = new QueryWrapper<>();
+        if(courseQuery!=null&& StringUtils.isNotEmpty(courseQuery.getTitle())){
+            queryWrapper.like("title",courseQuery.getTitle());
         }
-        if (queryWrapper != null && StringUtils.isNoneEmpty(courseQuery.getStatus())){
+        if ( courseQuery!=null&& StringUtils.isNotEmpty(courseQuery.getStatus())){
             queryWrapper.select("status");
         }
         IPage iPage = courseService.page(page1, queryWrapper);
-
         return Result.ok().data("page",iPage);
     }
 }
