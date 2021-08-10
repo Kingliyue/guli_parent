@@ -12,6 +12,7 @@ import com.liyue.result.Result;
 import com.liyue.result.ResultCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -101,28 +102,28 @@ public class TeacherController {
     @PostMapping("/query/{current}/{size}")
     @ApiOperation("有条件的查询老师列表")
     public Result queryTeacher(@PathVariable("current") long current, @PathVariable("size") long size,
-           QueryTeacher queryTeacher) {
+          @RequestBody QueryTeacher queryTeacher) {
         //current当前第几页  、size每页大小
         System.out.println(queryTeacher+"-------------");
         IPage<Teacher> teacherPage = null;
         try {
             Page page = new Page(current, size);
 
-            QueryWrapper wrapper = new QueryWrapper<QueryTeacher>();
-            if (queryTeacher != null && !"".equals(queryTeacher.getIntro())) {
+            QueryWrapper<Teacher> wrapper = new QueryWrapper<>();
+            if (StringUtils.isNotEmpty(queryTeacher.getIntro())) {
                 wrapper.eq("intro",queryTeacher.getIntro());
             }
-            if (queryTeacher != null && !"".equals(queryTeacher.getName())) {
+            if ( StringUtils.isNotEmpty(queryTeacher.getName())) {
                 wrapper.eq("name",queryTeacher.getName());
             }
-            if (queryTeacher != null && !"".equals(queryTeacher.getGmtCreate())) {
+            if (queryTeacher.getGmtCreate() != null){
                 wrapper.eq("gmt_create",queryTeacher.getGmtCreate());
             }
-            if (queryTeacher != null && !"".equals(queryTeacher.getGmtModified())) {
-                wrapper.eq("gmt_modified",queryTeacher.getGmtModified());
+            if  ((queryTeacher.getGmtModified() !=null)) {
+                wrapper.eq("gmt_create", queryTeacher.getGmtModified());
             }
             teacherPage = teacherService.page(page, wrapper);
-
+            System.out.println(teacherPage);
         } catch (Exception e) {
             e.printStackTrace();
             throw new MyException(ResultCode.error, e.getMessage());

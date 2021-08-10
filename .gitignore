@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+/LOG_HOME_WINDOWS_IS_UNDEFINED/

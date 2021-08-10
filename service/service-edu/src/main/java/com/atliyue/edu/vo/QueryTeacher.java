@@ -3,9 +3,9 @@ package com.atliyue.edu.vo;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.util.Date;
 
 @Data
 
@@ -36,10 +36,11 @@ public class QueryTeacher implements Serializable {
     private Integer isDeleted;
 
     @ApiModelProperty(value = "创建时间")
-    private Date gmtCreate;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private String gmtCreate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "更新时间")
-    private Date gmtModified;
+    private String gmtModified;
 
     @Override
     public String toString() {

@@ -77,13 +77,12 @@ public class CourseController {
     public Result getCourseList(@PathVariable long page, @PathVariable long limit,
                                 @RequestBody CourseQuery courseQuery){
         Page page1 = new Page(page,limit);
-
-        QueryWrapper queryWrapper = new QueryWrapper<>();
+        QueryWrapper queryWrapper = new QueryWrapper<Course>();
         if(courseQuery!=null&& StringUtils.isNotEmpty(courseQuery.getTitle())){
             queryWrapper.like("title",courseQuery.getTitle());
         }
         if ( courseQuery!=null && StringUtils.isNotEmpty(courseQuery.getStatus())){
-            queryWrapper.select("status");
+            queryWrapper.eq("status",courseQuery.getStatus());
         }
         IPage iPage = courseService.page(page1, queryWrapper);
         return Result.ok().data("page",iPage);
