@@ -59,13 +59,13 @@ public class CourseController {
     }
 
     @GetMapping("getCourseInfo/{courseId}")
-    public Result getCourseInfo(@PathVariable String courseId) {
+    public Result getCourseInfo(@PathVariable("courseId") String courseId) {
         CourseInfoVo courseInfo = courseService.getCourseInfo(courseId);
         return Result.ok().data("coursePublish",courseInfo);
     }
     //发布
     @PutMapping("updateStatus/{courseId}")
-        public Result updateStatus(@PathVariable String courseId){
+        public Result updateStatus(@PathVariable("courseId") String courseId){
         Course course = new Course();
         course.setId(courseId);
         course.setStatus("Normal");

@@ -1,6 +1,7 @@
 package com.atliyue.edu.controller;
 
 import com.atliyue.edu.service.TeacherService;
+import com.atliyue.edu.vo.EduLoginVo;
 import com.liyue.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,8 +13,7 @@ public class EduLoginTeacher {
     @Autowired
     private TeacherService teacherService;
     @PostMapping("user/login")
-    public Result login(@RequestParam("username")String username,
-                        @RequestParam("password")String password){
+    public Result login(@RequestBody EduLoginVo eduLoginVo){
         return Result.ok().data("token","admin");
     }
     @GetMapping ("user/info/{token}")
