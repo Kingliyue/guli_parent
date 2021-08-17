@@ -24,6 +24,8 @@ public interface CourseService extends IService<Course> {
     Course selectCourse(String courseId);
 
     CourseInfoVo getCourseInfo(String courseId);
+    //
+    void deleteCourse(String courseId);
     //获取课程的全部信息
 
 }

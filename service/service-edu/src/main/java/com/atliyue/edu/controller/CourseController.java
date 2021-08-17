@@ -13,6 +13,7 @@ import com.liyue.result.Result;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -86,5 +87,10 @@ public class CourseController {
         }
         IPage iPage = courseService.page(page1, queryWrapper);
         return Result.ok().data("page",iPage);
+    }
+    @Delete("delete/{courseId}")
+    public Result deleteCourse(@PathVariable String courseId){
+        courseService.deleteCourse(courseId);
+        return Result.ok();
     }
 }

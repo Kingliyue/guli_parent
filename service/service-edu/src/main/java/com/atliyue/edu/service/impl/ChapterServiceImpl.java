@@ -21,6 +21,7 @@ import java.util.List;
  * @since 2021-06-23
  */
 @Service
+
 public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> implements ChapterService {
 
     @Autowired

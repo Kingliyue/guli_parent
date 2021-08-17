@@ -96,4 +96,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return courseInfo;
 
     }
+
+    @Override
+    public void deleteCourse(String courseId) {
+        //1.删除课程的course表中的信息
+        //2.删除课程描述表中的信息
+        //3.删除章节表中的信息
+
+    }
 }
