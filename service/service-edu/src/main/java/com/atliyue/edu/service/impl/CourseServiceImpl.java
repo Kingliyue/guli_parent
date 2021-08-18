@@ -2,8 +2,10 @@ package com.atliyue.edu.service.impl;
 
 import com.atliyue.edu.entity.Course;
 import com.atliyue.edu.entity.CourseDescription;
+import com.atliyue.edu.mapper.ChapterMapper;
 import com.atliyue.edu.mapper.CourseDescriptionMapper;
 import com.atliyue.edu.mapper.CourseMapper;
+import com.atliyue.edu.mapper.VideoMapper;
 import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseVo;
@@ -14,6 +16,10 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -29,10 +35,17 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
 
     @Autowired
+    @Resource
     private CourseDescriptionMapper descriptionMapper;
     @Autowired
+    @Resource
     private CourseMapper courseMapper;
-
+    @Autowired
+    @Resource
+    private ChapterMapper chapterMapper;
+    @Autowired
+    @Resource
+    private VideoMapper videoMapper;
     @Override
     public Course selectCourse(String courseId) {
         return courseMapper.selectCourseById(courseId);
@@ -99,9 +112,16 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Override
     public void deleteCourse(String courseId) {
+        Map<String,Object> map=new HashMap<>();
+        map.put("course_id",courseId);
         //1.删除课程的course表中的信息
+        courseMapper.deleteById(courseId);
         //2.删除课程描述表中的信息
+        descriptionMapper.deleteById(courseId);
         //3.删除章节表中的信息
+        chapterMapper.deleteByMap(map);
+        //4.删除video
+        videoMapper.deleteByMap(map);
 
     }
 }

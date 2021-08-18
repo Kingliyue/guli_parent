@@ -27,12 +27,12 @@ public class VideoController {
         return Result.ok().data("video",video);
     }
     @PutMapping("updateVideo")
-    public Result updateVideo(Video video){
+    public Result updateVideo(@RequestBody Video video){
         videoService.updateById(video);
         return  Result.ok();
     }
     @PostMapping("saveVideo")
-    public Result saveVideo(Video video){
+    public Result saveVideo(@RequestBody Video video){
         videoService.save(video);
         return Result.ok();
     }

@@ -38,7 +38,7 @@ public class SubjectController {
     public Result downExcel(){
         List<SubjectVo> subjectAll = subjectService.getSubjectAll();
         System.out.println(subjectAll);
-            return Result.ok().data("list",subjectAll);
+            return Result.ok().data("subjectList",subjectAll);
     }
 
 }

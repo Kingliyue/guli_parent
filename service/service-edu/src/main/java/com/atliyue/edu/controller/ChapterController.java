@@ -33,12 +33,12 @@ public class ChapterController {
         return Result.ok().data("list",chapterAndVideoList);
     }
     @PostMapping("saveChapter")
-    public Result saveChapter(Chapter chapter){
+    public Result saveChapter(@RequestBody Chapter chapter){
         chapterService.saveChapter(chapter);
         return Result.ok();
     }
     @PutMapping("updateChapter")
-    public Result updateChapter(Chapter chapter){
+    public Result updateChapter(@RequestBody Chapter chapter){
         chapterService.updateChapter(chapter);
         return Result.ok();
     }

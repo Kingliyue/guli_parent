@@ -39,7 +39,7 @@ public class TeacherController {
     @GetMapping("/list")
     @ApiOperation("教师列表")
     public Result getListTeacher() {
-        QueryWrapper queryWrapper = new QueryWrapper();
+        QueryWrapper<Teacher> queryWrapper = new QueryWrapper();
         List<Teacher> list = teacherService.list(queryWrapper);
         return Result.ok().data("list", list);
     }
