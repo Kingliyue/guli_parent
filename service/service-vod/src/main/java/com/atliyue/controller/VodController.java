@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("edu/vod")
+@CrossOrigin
 public class VodController {
     /**
      * 上传视频
