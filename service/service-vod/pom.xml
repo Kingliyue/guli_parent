@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>edu_vido</artifactId>
+    <artifactId>service-vod</artifactId>
     <dependencies>
         <dependency>
             <groupId>com.aliyun.oss</groupId>
@@ -62,7 +62,6 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
-            <version>1.2.62</version>
         </dependency>
         <dependency>
             <groupId>com.aliyun</groupId>

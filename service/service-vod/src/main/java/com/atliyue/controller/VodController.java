@@ -8,6 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("edu/vod")
+@CrossOrigin
 public class VodController {
     /**
      * 上传视频
@@ -21,9 +22,9 @@ public class VodController {
         String videoId = vodService.getVideoId(file);
         return Result.ok().data("videoId",videoId);
     }
-    @DeleteMapping("delete/{videoId}")
-    public Result deleteVideo(@PathVariable String videoId){
-
+    @DeleteMapping("delete/{videoSourceId}")
+    public Result deleteVideo(@PathVariable String videoSourceId){
+        vodService.deleteVideoById(videoSourceId);
         return Result.ok();
     }
 }
