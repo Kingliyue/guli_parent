@@ -32,10 +32,6 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
         </dependency>
-        <dependency>
-            <groupId></groupId>
-            <artifactId>aliyun-sdk-oss</artifactId>
-        </dependency>
     </dependencies>
 
 

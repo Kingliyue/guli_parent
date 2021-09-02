@@ -12,7 +12,7 @@
     <modules>
         <module>service-edu</module>
         <module>service_oss</module>
-        <module>edu_vido</module>
+        <module>service-vod</module>
     </modules>
     <artifactId>service</artifactId>
     <dependencies>

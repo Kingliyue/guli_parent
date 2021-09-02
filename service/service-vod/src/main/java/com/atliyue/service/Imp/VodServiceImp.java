@@ -5,6 +5,7 @@ import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
 import com.atliyue.service.VodService;
 import com.atliyue.utils.ConstantVodUtil;
+import com.atliyue.utils.InitVodClientUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,7 +46,7 @@ public class VodServiceImp implements VodService {
 
     @Override
     public String deleteVideoById(String videoId) {
+        InitVodClientUtil.deleteVod(ConstantVodUtil.accessKey_id,ConstantVodUtil.accessKey_Secret,videoId);
         return null;
-
     }
 }

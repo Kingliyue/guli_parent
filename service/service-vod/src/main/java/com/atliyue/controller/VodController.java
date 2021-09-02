@@ -22,9 +22,9 @@ public class VodController {
         String videoId = vodService.getVideoId(file);
         return Result.ok().data("videoId",videoId);
     }
-    @DeleteMapping("delete/{videoId}")
-    public Result deleteVideo(@PathVariable String videoId){
-
+    @DeleteMapping("delete/{videoSourceId}")
+    public Result deleteVideo(@PathVariable String videoSourceId){
+        vodService.deleteVideoById(videoSourceId);
         return Result.ok();
     }
 }
