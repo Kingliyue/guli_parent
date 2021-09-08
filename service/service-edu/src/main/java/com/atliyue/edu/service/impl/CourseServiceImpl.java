@@ -2,6 +2,8 @@ package com.atliyue.edu.service.impl;
 
 import com.atliyue.edu.entity.Course;
 import com.atliyue.edu.entity.CourseDescription;
+import com.atliyue.edu.entity.Video;
+import com.atliyue.edu.fegin.EduVodClient;
 import com.atliyue.edu.mapper.ChapterMapper;
 import com.atliyue.edu.mapper.CourseDescriptionMapper;
 import com.atliyue.edu.mapper.CourseMapper;
@@ -18,7 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -46,6 +50,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Autowired
     @Resource
     private VideoMapper videoMapper;
+    @Autowired
+    private EduVodClient eduVodClient;
+
     @Override
     public Course selectCourse(String courseId) {
         return courseMapper.selectCourseById(courseId);
@@ -121,7 +128,14 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         //3.删除章节表中的信息
         chapterMapper.deleteByMap(map);
         //4.删除video
+        List<Video> videos = videoMapper.selectByMap(map);
         videoMapper.deleteByMap(map);
-
+        //5删除远程的视频
+        List list = new ArrayList();
+        if(videos != null){
+            for(int i = 0;i<videos.size();i++)
+            list.add(videos.get(i).getVideoSourceId());
+        }
+        eduVodClient.deleteVideo(list.toString());
     }
 }
