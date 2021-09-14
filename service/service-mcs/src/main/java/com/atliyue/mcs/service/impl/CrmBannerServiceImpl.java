@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -20,11 +21,16 @@ import java.util.List;
 @Service
 public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner> implements CrmBannerService {
     @Autowired
+    @Resource
     private CrmBannerMapper crmBannerMapper;
     @Override
-    public List getCourseList() {
+    public List getCourseList(){
       //  crmBannerMapper.getCourseList();
-
         return null;
+    }
+
+    @Override
+    public List getBannerList() {
+       return crmBannerMapper.selectList(null);
     }
 }
