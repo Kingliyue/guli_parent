@@ -4,6 +4,8 @@ import com.atliyue.edu.entity.Course;
 import com.atliyue.edu.vo.CourseInfoVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 Mapper 接口
@@ -17,4 +19,5 @@ public interface CourseMapper extends BaseMapper<Course> {
 
     CourseInfoVo getCourseInfo(String courseId);
 
+    List getCourseList();
 }

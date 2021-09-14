@@ -114,9 +114,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     public CourseInfoVo getCourseInfo(String courseId) {
         CourseInfoVo courseInfo = courseMapper.getCourseInfo(courseId);
         return courseInfo;
-
     }
-
     @Override
     public void deleteCourse(String courseId) {
         Map<String,Object> map=new HashMap<>();
@@ -137,5 +135,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
             list.add(videos.get(i).getVideoSourceId());
         }
         eduVodClient.deleteVideo(list.toString());
+    }
+    @Override
+    public java.awt.List getCourseList() {
+        courseMapper.getCourseList();
+        return null;
     }
 }

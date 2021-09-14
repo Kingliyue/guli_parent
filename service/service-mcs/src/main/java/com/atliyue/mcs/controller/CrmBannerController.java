@@ -23,13 +23,6 @@ import java.util.List;
 public class CrmBannerController {
     @Autowired
     private CrmBannerService crmBannerService;
-    //1.查询最热门的八个课程
-    public Result getCourseList(){
-        crmBannerService.getCourseList();
-        return  Result.ok();
-    }
-    //2.查询最受欢迎四个老师
-
     //3.查询banner轮播图
     @GetMapping("getBannerList")
     public Result getBannerList(){

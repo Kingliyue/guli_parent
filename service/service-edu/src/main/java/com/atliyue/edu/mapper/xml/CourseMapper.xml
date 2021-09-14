@@ -20,4 +20,7 @@
          LEFT JOIN edu_subject s1 ON c.subject_id = s1.id
         where c.id = #{courseId}#
     </select>
+    <select id="getCourseList" resultType="com.atliyue.edu.entity.Course">
+
+    </select>
 </mapper>
