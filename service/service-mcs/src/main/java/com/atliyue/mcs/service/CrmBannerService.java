@@ -1,7 +1,9 @@
-package com.atliyue.edu.service;
+package com.atliyue.mcs.service;
 
-import com.atliyue.edu.entity.CrmBanner;
+import com.atliyue.mcs.entity.CrmBanner;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CrmBannerService extends IService<CrmBanner> {
 
+    List getCourseList();
 }

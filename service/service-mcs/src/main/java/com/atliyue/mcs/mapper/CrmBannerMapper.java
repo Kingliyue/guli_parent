@@ -1,6 +1,6 @@
-package com.atliyue.edu.mapper;
+package com.atliyue.mcs.mapper;
 
-import com.atliyue.edu.entity.CrmBanner;
+import com.atliyue.mcs.entity.CrmBanner;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
