@@ -50,6 +50,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Autowired
     @Resource
     private VideoMapper videoMapper;
+
     @Autowired
     private EduVodClient eduVodClient;
 
@@ -137,8 +138,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         eduVodClient.deleteVideo(list.toString());
     }
     @Override
-    public java.awt.List getCourseList() {
-        courseMapper.getCourseList();
-        return null;
+    public List getCourseList() {
+        List courseList = courseMapper.getCourseList();
+        return courseList;
     }
 }

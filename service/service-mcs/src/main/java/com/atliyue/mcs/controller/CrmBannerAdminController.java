@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/mcs/adminBanner")
+@CrossOrigin
 public class CrmBannerAdminController {
     @Autowired
     private CrmBannerService crmBannerService;
     @GetMapping("/bannerList/{limit}/{size}")
     public Result getAdminBannerList(@PathVariable("limit") long limit,@PathVariable("size") long size){
-
         IPage page = new Page(limit,size);
         IPage iPage = crmBannerService.page(page, null);
         return Result.ok().data("page",iPage);

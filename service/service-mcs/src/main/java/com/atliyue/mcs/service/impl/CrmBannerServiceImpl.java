@@ -3,6 +3,7 @@ package com.atliyue.mcs.service.impl;
 import com.atliyue.mcs.entity.CrmBanner;
 import com.atliyue.mcs.mapper.CrmBannerMapper;
 import com.atliyue.mcs.service.CrmBannerService;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,11 @@ public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner
     @Resource
     private CrmBannerMapper crmBannerMapper;
     @Override
-    public List getCourseList(){
-      //  crmBannerMapper.getCourseList();
-        return null;
-    }
-
-    @Override
     public List getBannerList() {
-       return crmBannerMapper.selectList(null);
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.orderByDesc("sort");
+        wrapper.last("limt 2");
+        List<CrmBanner> crmBanners = crmBannerMapper.selectList(wrapper);
+        return crmBanners;
     }
 }

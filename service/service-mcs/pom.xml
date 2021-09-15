@@ -11,5 +11,16 @@
 
     <artifactId>service-mcs</artifactId>
 
+    <dependencies>
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.atliyue</groupId>
+        <artifactId>service-base</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    </dependencies>
 
 </project>

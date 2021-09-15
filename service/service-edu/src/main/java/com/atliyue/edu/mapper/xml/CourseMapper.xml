@@ -21,6 +21,7 @@
         where c.id = #{courseId}#
     </select>
     <select id="getCourseList" resultType="com.atliyue.edu.entity.Course">
-
+        SELECT * FROM edu_course c WHERE c.is_deleted = '0'
+          and c.status ='Normal'   ORDER BY view_count DESC LIMIT 8
     </select>
 </mapper>

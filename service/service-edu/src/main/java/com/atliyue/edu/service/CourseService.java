@@ -5,7 +5,7 @@ import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-import java.awt.*;
+import java.util.List;
 
 /**
  * <p>
@@ -30,6 +30,8 @@ public interface CourseService extends IService<Course> {
     void deleteCourse(String courseId);
 
     List getCourseList();
-    //获取课程的全部信息
+
+
+
 
 }
