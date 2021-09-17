@@ -19,7 +19,7 @@ import java.util.List;
  * @since 2021-09-08
  */
 @RestController
-@RequestMapping("/edu/crm-banner")
+@RequestMapping("/crm/banner")
 public class CrmBannerController {
     @Autowired
     private CrmBannerService crmBannerService;

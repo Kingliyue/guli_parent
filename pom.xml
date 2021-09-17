@@ -215,7 +215,7 @@
             <resource>
                 <directory>src/main/java</directory>
                 <includes>
-                    <include>com/atliyue/edu/**/*.xml</include>
+                    <include>com/atliyue/**/**/*.xml</include>
                 </includes>
             </resource>
         </resources>
