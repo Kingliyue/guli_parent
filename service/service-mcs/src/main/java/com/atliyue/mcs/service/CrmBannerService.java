@@ -13,6 +13,7 @@ import java.util.List;
  * @author liYue
  * @since 2021-09-08
  */
+
 public interface CrmBannerService extends IService<CrmBanner> {
     List<CrmBanner> getBannerList();
 }
