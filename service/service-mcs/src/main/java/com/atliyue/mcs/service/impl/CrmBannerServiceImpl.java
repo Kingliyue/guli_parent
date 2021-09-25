@@ -19,7 +19,7 @@ import java.util.List;
  * @author liYue
  * @since 2021-09-08
  */
-@Cacheable(value = "getBannerList",key = "banner")
+@Cacheable(value = "getBannerList",key = "'banner'")
 @Service
 public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner> implements CrmBannerService {
     @Autowired

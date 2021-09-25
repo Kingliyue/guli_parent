@@ -13,7 +13,9 @@
         <module>service-edu</module>
         <module>service_oss</module>
         <module>service-vod</module>
+        <module>service-mcs</module>
         <module>service-msm</module>
+        <module>service-ucenter</module>
     </modules>
     <artifactId>service</artifactId>
     <dependencies>

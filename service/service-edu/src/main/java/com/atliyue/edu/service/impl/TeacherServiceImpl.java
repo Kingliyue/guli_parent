@@ -5,6 +5,7 @@ import com.atliyue.edu.mapper.TeacherMapper;
 import com.atliyue.edu.service.TeacherService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, Teacher> impl
    @Autowired
     private  TeacherMapper teacherMapper;
     @Override
+    @Cacheable(value = "getTeacherList",key = "'teacher'")
     public List getTeacherList() {
         return teacherMapper.getTeacherList();
     }
