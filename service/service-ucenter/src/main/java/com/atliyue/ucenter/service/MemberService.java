@@ -15,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface MemberService extends IService<Member> {
     String login(Ucenter ucenter);
 
+    void register(Ucenter ucenter);
 }

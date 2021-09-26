@@ -36,6 +36,12 @@ public class MemberController {
         return Result.ok().data("token",jwtToken);
     }
     //注册
+    @PostMapping("register")
+    public Result register(@RequestBody Ucenter ucenter){
+        memberService.register(ucenter);
+
+        return Result.ok();
+    }
 
 
 
