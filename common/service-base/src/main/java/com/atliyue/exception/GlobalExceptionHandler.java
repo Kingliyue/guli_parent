@@ -1,6 +1,6 @@
 package com.atliyue.exception;
 
-import com.liyue.result.Result;
+import com.atliyue.result.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

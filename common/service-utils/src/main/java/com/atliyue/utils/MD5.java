@@ -1,4 +1,4 @@
-package com.liyue.utils;
+package com.atliyue.utils;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

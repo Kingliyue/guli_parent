@@ -1,6 +1,6 @@
 package com.atliyue.edu.fegin;
 
-import com.liyue.result.Result;
+import com.atliyue.result.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;

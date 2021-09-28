@@ -4,7 +4,7 @@ package com.atliyue.edu.controller;
 import com.atliyue.edu.entity.Chapter;
 import com.atliyue.edu.service.ChapterService;
 import com.atliyue.edu.vo.ChapterVo;
-import com.liyue.result.Result;
+import com.atliyue.result.Result;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

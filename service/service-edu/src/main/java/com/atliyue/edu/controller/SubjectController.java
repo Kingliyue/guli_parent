@@ -3,7 +3,7 @@ package com.atliyue.edu.controller;
 
 import com.atliyue.edu.service.SubjectService;
 import com.atliyue.edu.vo.SubjectVo;
-import com.liyue.result.Result;
+import com.atliyue.result.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

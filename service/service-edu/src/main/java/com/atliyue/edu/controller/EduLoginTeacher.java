@@ -2,7 +2,7 @@ package com.atliyue.edu.controller;
 
 import com.atliyue.edu.service.TeacherService;
 import com.atliyue.edu.vo.EduLoginVo;
-import com.liyue.result.Result;
+import com.atliyue.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

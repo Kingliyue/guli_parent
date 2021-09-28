@@ -1,4 +1,4 @@
-package com.liyue.result;
+package com.atliyue.result;
 
 public interface ResultCode {
     /**

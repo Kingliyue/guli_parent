@@ -1,4 +1,4 @@
-package com.liyue.result;
+package com.atliyue.result;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

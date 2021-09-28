@@ -1,7 +1,7 @@
 package com.atliyue.controller;
 
 import com.atliyue.service.VodService;
-import com.liyue.result.Result;
+import com.atliyue.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
