@@ -1,11 +1,12 @@
 package com.atliyue.ucenter.controller;
 
 
+import com.atliyue.result.Result;
 import com.atliyue.ucenter.entity.Member;
 import com.atliyue.ucenter.service.MemberService;
 import com.atliyue.ucenter.vo.Ucenter;
-import com.atliyue.result.Result;
 import com.atliyue.utils.JwtUtil;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +51,8 @@ public class MemberController {
     public Result getEntityOfToken(HttpServletRequest httpServletRequest){
         String memberIdByJwtToken = JwtUtil.getMemberIdByJwtToken(httpServletRequest);
         Member member = memberService.getById(memberIdByJwtToken);
-        return Result.ok().data("member",member);
+        Gson gson = new Gson();
+        return Result.ok().data("member",gson.toJson(member));
     }
 
 }
