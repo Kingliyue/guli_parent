@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,4 +21,5 @@ public interface TeacherService extends IService<Teacher> {
 
     List getTeacherList();
 
+    Map<String, Object> getTeacherListPage(long page, long size);
 }
