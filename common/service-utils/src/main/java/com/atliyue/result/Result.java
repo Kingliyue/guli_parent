@@ -52,11 +52,11 @@ public class  Result {
         this.setMessage(message);
         return this;
     }
-    public  Result data(HashMap<String,Object> data){
+    public  Result data(Map<String,Object> data){
         this.setData(data);
         return this;
     }
-    private static HashMap<String, Object> hashMap = new HashMap<>();
+    private static Map<String, Object> hashMap = new HashMap<>();
     public  Result data(String key, Object value){
         hashMap.put(key,value);
         this.setData(hashMap);

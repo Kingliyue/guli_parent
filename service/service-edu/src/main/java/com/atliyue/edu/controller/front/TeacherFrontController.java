@@ -11,13 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
 
 @RestController
+@RequestMapping("")
 public class TeacherFrontController {
     @Autowired
     private TeacherService teacherService;
+
+    /**
+     * 获取teacher分页信息
+     * @param page
+     * @param size
+     * @return
+     */
     @RequestMapping("getTeacherListPage/{page}/{size}")
     public Result getTeacherListPage(@PathVariable("page") long page,@PathVariable("size") long size){
       Map<String,Object> map= teacherService.getTeacherListPage(page,size);
-        return Result.ok();
+        return Result.ok().data(map);
     }
 
     /**
