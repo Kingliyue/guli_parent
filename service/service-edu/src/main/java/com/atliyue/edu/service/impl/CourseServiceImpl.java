@@ -9,9 +9,13 @@ import com.atliyue.edu.mapper.CourseDescriptionMapper;
 import com.atliyue.edu.mapper.CourseMapper;
 import com.atliyue.edu.mapper.VideoMapper;
 import com.atliyue.edu.service.CourseService;
+import com.atliyue.edu.vo.CourseFrontVo;
 import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseVo;
 import com.atliyue.exception.MyException;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -143,5 +147,24 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     public List getCourseList() {
         List courseList = courseMapper.getCourseList();
         return courseList;
+    }
+
+    @Override
+    public List<Course> queryCourse(String teacherId) {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("teacher_Id",teacherId);
+        List<Course> courses = courseMapper.selectList(queryWrapper);
+        return courses;
+    }
+
+    @Override
+    public Map<String, Object> getCourseListPage(long page, long size, CourseFrontVo courseFrontVo) {
+        IPage iPage = new Page(page,size);
+
+        QueryWrapper queryWrapper = new QueryWrapper();
+
+
+        courseMapper.selectPage(iPage,queryWrapper);
+        return null;
     }
 }

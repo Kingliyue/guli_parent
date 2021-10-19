@@ -1,11 +1,13 @@
 package com.atliyue.edu.service;
 
 import com.atliyue.edu.entity.Course;
+import com.atliyue.edu.vo.CourseFrontVo;
 import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -32,6 +34,7 @@ public interface CourseService extends IService<Course> {
     List getCourseList();
 
 
+    List<Course> queryCourse(String teacherId);
 
-
+    Map<String, Object> getCourseListPage(long page, long size, CourseFrontVo courseFrontVo);
 }
