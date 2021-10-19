@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class CourseFrontVo {
+    private String
 
 }

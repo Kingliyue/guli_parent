@@ -153,6 +153,8 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     public List<Course> queryCourse(String teacherId) {
         QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("teacher_Id",teacherId);
+        queryWrapper.orderByDesc(true,"view_count");
+        queryWrapper.last("limit 4");
         List<Course> courses = courseMapper.selectList(queryWrapper);
         return courses;
     }

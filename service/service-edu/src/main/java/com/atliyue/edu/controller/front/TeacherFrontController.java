@@ -6,16 +6,14 @@ import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.service.TeacherService;
 import com.atliyue.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("eduService/teacherFront")
+@CrossOrigin
 public class TeacherFrontController {
     @Autowired
     private TeacherService teacherService;
@@ -40,6 +38,7 @@ public class TeacherFrontController {
     @GetMapping("getTeacherInfo/{teacherId}")
     public Result getTeacherInfo(@PathVariable("teacherId")String teacherId){
         Teacher teacher = teacherService.getById(teacherId);
+
         List<Course> courses = courseService.queryCourse(teacherId);
 
         return Result.ok().data("teacher",teacher).data("course",courses);
