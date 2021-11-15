@@ -162,17 +162,17 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Override
     public Map<String, Object> getCourseListPage(long page, long size, CourseFrontVo courseFrontVo) {
         IPage iPage = new Page(page,size);
-
         QueryWrapper queryWrapper = new QueryWrapper();
-
-
         IPage selectPage = courseMapper.selectPage(iPage, queryWrapper);
         Map<String,Object> map = new HashMap<>(16);
-        map.put("total",selectPage.getTotal());
-        map.put("records",selectPage.getRecords());
-        map.put("current",selectPage.getCurrent());
-        map.put("size",selectPage.getSize());
-        map.put("pages",selectPage.getPages());
-        return null;
+        if(selectPage !=null){
+            map.put("total",selectPage.getTotal());
+            map.put("records",selectPage.getRecords());
+            map.put("current",selectPage.getCurrent());
+            map.put("size",selectPage.getSize());
+            map.put("pages",selectPage.getPages());
+        }
+
+        return map;
     }
 }

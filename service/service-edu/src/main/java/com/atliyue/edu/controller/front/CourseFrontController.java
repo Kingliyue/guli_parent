@@ -18,8 +18,8 @@ public class CourseFrontController {
     private CourseService courseService;
     @Autowired
     private SubjectService subjectService;
-    @PostMapping("getCourseListPage")
-    public Result getCourseListPage(@RequestBody CourseFrontVo courseFrontVo, @PathVariable("page")long page, @PathVariable("size")long size){
+    @PostMapping("getCourseListPage/{page}/{size}")
+    public Result getCourseListPage(CourseFrontVo courseFrontVo, @PathVariable("page")long page, @PathVariable("size")long size){
         Map<String,Object> map = courseService.getCourseListPage(page,size,courseFrontVo);
         return Result.ok().data(map);
     }
