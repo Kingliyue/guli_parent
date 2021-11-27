@@ -18,6 +18,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -163,6 +164,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     public Map<String, Object> getCourseListPage(long page, long size, CourseFrontVo courseFrontVo) {
         IPage iPage = new Page(page,size);
         QueryWrapper queryWrapper = new QueryWrapper();
+        if(courseFrontVo!= null&& StringUtils.isNotBlank(courseFrontVo.getSubjectParentId())){
+            queryWrapper.eq("subjectParentId",courseFrontVo.getSubjectParentId());
+        }
+        if(courseFrontVo!= null&& StringUtils.isNotBlank(courseFrontVo.getSubjectId())){
+            queryWrapper.eq("subjectId",courseFrontVo.getSubjectId());
+        }
         IPage selectPage = courseMapper.selectPage(iPage, queryWrapper);
         Map<String,Object> map = new HashMap<>(16);
         if(selectPage !=null){

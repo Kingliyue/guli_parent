@@ -19,7 +19,7 @@ public class CourseFrontController {
     @Autowired
     private SubjectService subjectService;
     @PostMapping("getCourseListPage/{page}/{size}")
-    public Result getCourseListPage(CourseFrontVo courseFrontVo, @PathVariable("page")long page, @PathVariable("size")long size){
+    public Result getCourseListPage(@RequestBody CourseFrontVo courseFrontVo, @PathVariable("page")long page, @PathVariable("size")long size){
         Map<String,Object> map = courseService.getCourseListPage(page,size,courseFrontVo);
         return Result.ok().data(map);
     }
@@ -36,7 +36,7 @@ public class CourseFrontController {
     }
 
     /**
-     * 回去一二級分類
+     * 获取一二级分类
      * @return
      */
     @GetMapping("getSubject")
