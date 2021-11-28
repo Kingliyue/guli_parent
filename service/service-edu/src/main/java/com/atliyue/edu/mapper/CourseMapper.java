@@ -2,6 +2,7 @@ package com.atliyue.edu.mapper;
 
 import com.atliyue.edu.entity.Course;
 import com.atliyue.edu.vo.CourseInfoVo;
+import com.atliyue.edu.vo.CourseWebVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -20,4 +21,6 @@ public interface CourseMapper extends BaseMapper<Course> {
     CourseInfoVo getCourseInfo(String courseId);
 
     List getCourseList();
+    //前台系统获取课程的基本信息
+    CourseWebVo getCourseInfoWeb(String courseId);
 }

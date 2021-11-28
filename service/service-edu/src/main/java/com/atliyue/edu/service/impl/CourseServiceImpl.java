@@ -12,6 +12,7 @@ import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.vo.CourseFrontVo;
 import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseVo;
+import com.atliyue.edu.vo.CourseWebVo;
 import com.atliyue.exception.MyException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -165,10 +166,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         IPage iPage = new Page(page,size);
         QueryWrapper queryWrapper = new QueryWrapper();
         if(courseFrontVo!= null&& StringUtils.isNotBlank(courseFrontVo.getSubjectParentId())){
-            queryWrapper.eq("subjectParentId",courseFrontVo.getSubjectParentId());
+            queryWrapper.eq("subject_parent_id",courseFrontVo.getSubjectParentId());
         }
         if(courseFrontVo!= null&& StringUtils.isNotBlank(courseFrontVo.getSubjectId())){
-            queryWrapper.eq("subjectId",courseFrontVo.getSubjectId());
+            queryWrapper.eq("subject_id",courseFrontVo.getSubjectId());
         }
         IPage selectPage = courseMapper.selectPage(iPage, queryWrapper);
         Map<String,Object> map = new HashMap<>(16);
@@ -181,5 +182,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         }
 
         return map;
+    }
+
+    @Override
+    public CourseWebVo getCourseInfoWeb(String courseId) {
+        return    courseMapper.getCourseInfoWeb(courseId);
     }
 }

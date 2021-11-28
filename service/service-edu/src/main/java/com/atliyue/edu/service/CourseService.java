@@ -4,6 +4,7 @@ import com.atliyue.edu.entity.Course;
 import com.atliyue.edu.vo.CourseFrontVo;
 import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseVo;
+import com.atliyue.edu.vo.CourseWebVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
@@ -37,4 +38,7 @@ public interface CourseService extends IService<Course> {
     List<Course> queryCourse(String teacherId);
 
     Map<String, Object> getCourseListPage(long page, long size, CourseFrontVo courseFrontVo);
+
+
+    CourseWebVo getCourseInfoWeb(String courseId);
 }

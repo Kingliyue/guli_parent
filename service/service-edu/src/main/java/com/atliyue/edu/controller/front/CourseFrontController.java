@@ -1,9 +1,9 @@
 package com.atliyue.edu.controller.front;
 
+import com.atliyue.edu.service.ChapterService;
 import com.atliyue.edu.service.CourseService;
 import com.atliyue.edu.service.SubjectService;
-import com.atliyue.edu.vo.CourseFrontVo;
-import com.atliyue.edu.vo.SubjectVo;
+import com.atliyue.edu.vo.*;
 import com.atliyue.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +18,8 @@ public class CourseFrontController {
     private CourseService courseService;
     @Autowired
     private SubjectService subjectService;
+    @Autowired
+    private ChapterService chapterService;
     @PostMapping("getCourseListPage/{page}/{size}")
     public Result getCourseListPage(@RequestBody CourseFrontVo courseFrontVo, @PathVariable("page")long page, @PathVariable("size")long size){
         Map<String,Object> map = courseService.getCourseListPage(page,size,courseFrontVo);
@@ -32,7 +34,9 @@ public class CourseFrontController {
     @GetMapping("getCourseInfo/{courseId}")
     public Result getCourseInfo(@PathVariable("courseId") String courseId){
 
-        return  Result.ok();
+        CourseWebVo courseInfoWeb = courseService.getCourseInfoWeb(courseId);
+        List<ChapterVo> chapterAndVideoList = chapterService.getChapterAndVideoList(courseId);
+        return  Result.ok().data("course",courseInfoWeb).data("chapterList",chapterAndVideoList);
     }
 
     /**

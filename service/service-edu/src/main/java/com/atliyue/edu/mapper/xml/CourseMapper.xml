@@ -24,4 +24,10 @@
         SELECT * FROM edu_course c WHERE c.is_deleted = '0'
           and c.status ='Normal'   ORDER BY view_count DESC LIMIT 8
     </select>
+    <select id="getCourseInfoWeb" resultType="com.atliyue.edu.vo.CourseWebVo" parameterType="string">
+        select * from edu_course c inner join edu_course_description d on c.id = d.id
+        left join edu_teacher t on c.teacher_id = t.id
+        where c.id = #{courseId}
+
+    </select>
 </mapper>
