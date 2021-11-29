@@ -6,7 +6,8 @@
             c.id,
             c.title,
             v.id as v_id,
-            v.title as v_title
+            v.title as v_title,
+            v.video_source_id
         FROM
             edu_chapter c
         LEFT JOIN edu_video v ON c.course_id = v.course_id
@@ -19,6 +20,7 @@
         <collection property="childVideo" ofType="com.atliyue.edu.vo.VideoVo">
             <id column="v_id" property="id"></id>
             <result column="v_title" property="title"></result>
+            <result column="video_source_id" property="videoSourceId"></result>
         </collection>
     </resultMap>
 </mapper>

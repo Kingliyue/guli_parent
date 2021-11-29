@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("edu/vod")
 @CrossOrigin
@@ -31,6 +33,11 @@ public class VodController {
     @DeleteMapping("delete/{videoSourceId}")
     public Result deleteVideo(@PathVariable String videoSourceId){
         vodService.deleteVideoById(videoSourceId);
+        return Result.ok();
+    }
+    @DeleteMapping("delete")
+    public Result deleteVideo(@RequestBody List<String> list){
+        vodService.deleteVideo(list);
         return Result.ok();
     }
     //获取权限id

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class VodServiceImp implements VodService {
@@ -48,5 +49,10 @@ public class VodServiceImp implements VodService {
     public String deleteVideoById(String videoId) {
         InitVodClientUtil.deleteVod(ConstantVodUtil.accessKey_id,ConstantVodUtil.accessKey_Secret,videoId);
         return null;
+    }
+
+    @Override
+    public void deleteVideo(List<String> list) {
+        InitVodClientUtil.deleteVod(ConstantVodUtil.accessKey_id,ConstantVodUtil.accessKey_Secret,list);
     }
 }

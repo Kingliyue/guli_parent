@@ -124,6 +124,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return courseInfo;
     }
     @Override
+    @Transactional
     public void deleteCourse(String courseId) {
         Map<String,Object> map=new HashMap<>();
         map.put("course_id",courseId);
@@ -140,9 +141,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         List list = new ArrayList();
         if(videos != null){
             for(int i = 0;i<videos.size();i++)
-            list.add(videos.get(i).getVideoSourceId());
+                list.add(videos.get(i).getVideoSourceId());
         }
-        eduVodClient.deleteVideo(list.toString());
+        eduVodClient.deleteVideo(list);
     }
     @Override
     @Cacheable(value = "getCourseList",key = "'course'")

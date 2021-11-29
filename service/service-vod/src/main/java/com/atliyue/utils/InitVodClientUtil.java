@@ -5,6 +5,8 @@ import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
 
+import java.util.List;
+
 public class InitVodClientUtil {
 
     public static DefaultAcsClient initVodClient(String accessKeyId, String accessKeySecret) throws ClientException {
@@ -20,6 +22,24 @@ public class InitVodClientUtil {
             DeleteVideoRequest request = new DeleteVideoRequest();
             request.setVideoIds(videoId);
              client.getAcsResponse(request);
+        } catch (ClientException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public static void deleteVod(String AccessKeyId, String  AccessKeySecret, List<String> list
+    ){
+        DefaultAcsClient client = null;
+        try {
+            client = initVodClient(AccessKeyId, AccessKeySecret);
+            DeleteVideoRequest request = new DeleteVideoRequest();
+            if(list.size() > 0 ){
+                Object[] objects = list.toArray();
+
+                request.setVideoIds(objects.toString());
+            }
+
+            client.getAcsResponse(request);
         } catch (ClientException e) {
             e.printStackTrace();
         }

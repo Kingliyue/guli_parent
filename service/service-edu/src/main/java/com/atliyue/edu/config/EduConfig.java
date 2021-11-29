@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 
 @Configuration
-@MapperScan("com/atliyue/edu/mapper")
+@MapperScan("com/atliyue/edu/mapper/")
 public class EduConfig {
     //逻辑删除
     @Bean
