@@ -92,4 +92,9 @@ public class CourseController {
         courseService.deleteCourse(courseId);
         return Result.ok();
     }
+    @GetMapping("/getCourse/{courseId}")
+    public CourseInfoVo getCourseInfoByCourseId(@PathVariable("courseId") String courseId) {
+        CourseInfoVo CourseInfoVo = courseService.getCourseInfo(courseId);
+        return  CourseInfoVo;
+    }
 }

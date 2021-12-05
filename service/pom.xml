@@ -16,6 +16,7 @@
         <module>service-mcs</module>
         <module>service-msm</module>
         <module>service-ucenter</module>
+        <module>service_order</module>
     </modules>
     <artifactId>service</artifactId>
     <dependencies>
