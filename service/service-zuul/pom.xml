@@ -9,15 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service_order</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>com.atliyue</groupId>
-            <artifactId>service-base</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-    </dependencies>
+    <artifactId>service-zuul</artifactId>
 
 
 </project>

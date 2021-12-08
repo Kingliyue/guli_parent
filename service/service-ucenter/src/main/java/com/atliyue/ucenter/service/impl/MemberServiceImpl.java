@@ -1,15 +1,15 @@
 package com.atliyue.ucenter.service.impl;
 
 import com.alibaba.nacos.common.util.Md5Utils;
+import com.atliyue.entity.Member;
 import com.atliyue.exception.MyException;
-import com.atliyue.ucenter.entity.Member;
 import com.atliyue.ucenter.mapper.MemberMapper;
 import com.atliyue.ucenter.service.MemberService;
 import com.atliyue.ucenter.vo.Ucenter;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.atliyue.utils.JwtUtil;
 import com.atliyue.utils.MD5;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

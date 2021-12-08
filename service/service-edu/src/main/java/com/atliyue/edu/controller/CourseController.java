@@ -3,13 +3,13 @@ package com.atliyue.edu.controller;
 
 import com.atliyue.edu.entity.Course;
 import com.atliyue.edu.service.CourseService;
-import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseQuery;
 import com.atliyue.edu.vo.CourseVo;
+import com.atliyue.entity.CourseInfoVo;
+import com.atliyue.result.Result;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.atliyue.result.Result;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -92,9 +92,9 @@ public class CourseController {
         courseService.deleteCourse(courseId);
         return Result.ok();
     }
-    @GetMapping("/getCourse/{courseId}")
+    @GetMapping("getCourseInfoFegin/{courseId}")
     public CourseInfoVo getCourseInfoByCourseId(@PathVariable("courseId") String courseId) {
-        CourseInfoVo CourseInfoVo = courseService.getCourseInfo(courseId);
-        return  CourseInfoVo;
+        CourseInfoVo courseInfoVo = courseService.getCourseInfo(courseId);
+        return courseInfoVo;
     }
 }

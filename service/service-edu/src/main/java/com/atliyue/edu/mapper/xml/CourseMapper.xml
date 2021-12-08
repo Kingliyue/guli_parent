@@ -4,7 +4,7 @@
     <select id="selectCourseById" resultType="com.atliyue.edu.entity.Course" parameterType="String">
         SELECT * from edu_course t where t.id = #{courseId}#
     </select>
-    <select id="getCourseInfo" resultType="com.atliyue.edu.vo.CourseInfoVo" parameterType="String">
+    <select id="getCourseInfo" resultType="com.atliyue.entity.CourseInfoVo" parameterType="String">
       SELECT
          c.title,
          c.cover,

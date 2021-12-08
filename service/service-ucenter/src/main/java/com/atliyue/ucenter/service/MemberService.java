@@ -1,6 +1,6 @@
 package com.atliyue.ucenter.service;
 
-import com.atliyue.ucenter.entity.Member;
+import com.atliyue.entity.Member;
 import com.atliyue.ucenter.vo.Ucenter;
 import com.baomidou.mybatisplus.extension.service.IService;
 

@@ -1,8 +1,8 @@
 package com.atliyue.edu.mapper;
 
 import com.atliyue.edu.entity.Course;
-import com.atliyue.edu.vo.CourseInfoVo;
 import com.atliyue.edu.vo.CourseWebVo;
+import com.atliyue.entity.CourseInfoVo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;

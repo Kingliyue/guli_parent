@@ -1,14 +1,13 @@
 package com.atliyue.ucenter.controller;
 
 
+import com.atliyue.entity.Member;
 import com.atliyue.result.Result;
-import com.atliyue.ucenter.entity.Member;
 import com.atliyue.ucenter.service.MemberService;
 import com.atliyue.ucenter.vo.Ucenter;
 import com.atliyue.utils.JwtUtil;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,12 +22,10 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/ucenter/member")
-@CrossOrigin
 public class MemberController {
     @Autowired
     private MemberService memberService;
-    @Autowired
-    private RedisTemplate redisTemplate;
+
 
     /**
      * 登录
@@ -54,6 +51,10 @@ public class MemberController {
         Gson gson = new Gson();
         return Result.ok().data("member",gson.toJson(member));
     }
-
+    @GetMapping("getTokenInfo")
+    public Member getEntityByToken(String token){
+        Member member = memberService.getById(token);
+        return member;
+    }
 }
 

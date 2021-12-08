@@ -1,6 +1,6 @@
 package com.atliyue.ucenter.mapper;
 
-import com.atliyue.ucenter.entity.Member;
+import com.atliyue.entity.Member;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

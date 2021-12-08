@@ -1,4 +1,4 @@
-package com.atliyue.ucenter.entity;
+package com.atliyue.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
