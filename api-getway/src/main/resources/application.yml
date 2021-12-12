@@ -1,0 +1,14 @@
+server:
+  port: 8008
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: service-edu
+        URI: lb://service-edu
+        predicates:
+        - Path:/edu/**
+#¿ªÆô×¢²á·þÎñ
+    discovery:
+        locator:
+          enabled: true
