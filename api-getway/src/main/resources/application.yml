@@ -7,10 +7,13 @@ spring:
       - id: service-edu
         URI: lb://service-edu
         predicates:
-          Path: "/edu/*/**"
+        - Path=/edu/*/**
     discovery:
         locator:
           enabled: true
     nacos:
       discovery:
         server-addr: 39.105.154.47:8848
+
+  application:
+   name: service-gateway

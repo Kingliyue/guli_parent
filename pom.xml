@@ -6,6 +6,10 @@
         <module>service</module>
         <module>common</module>
         <module>api-getway</module>
+        <module>spring_sercurity</module>
+        <module>common/spring_sercurity</module>
+        <module>commons/pringSercurity</module>
+        <module>common/springSercurity</module>
 
     </modules>
     <parent>
